@@ -24,5 +24,15 @@ namespace ModificaWPF
         {
             InitializeComponent();
         }
+
+        private void CloseClick(Object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void MinimizeClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }

@@ -94,5 +94,26 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gamesImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\homeImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\modsImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\socialsImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\minimizeImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\closeImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logoImg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
