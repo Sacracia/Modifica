@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModificaWPF"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="642" Width="1024" MinHeight="642" MinWidth="1024"
         WindowStyle="None" WindowStartupLocation="CenterScreen"
         Background="#11171D">
@@ -32,7 +33,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Panel.ZIndex="100">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Cursor="">
                 <Button Click="MinimizeClick" Width="39" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource MinimizeBtn}" VerticalAlignment="Stretch">
                     <Image Source="{StaticResource MinimizeImg}" Stretch="Fill" Width="15" Height="2"></Image>
@@ -85,6 +86,10 @@
                     </Button>
                 </StackPanel>
             </Grid>
+
+            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Frame x:Name="MainFrame" Content="{Binding FrameContent}"/>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Window>
