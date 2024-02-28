@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ModificaWPF"
+        xmlns:props="clr-namespace:ModificaWPF.Models"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="642" Width="1024" MinHeight="642" MinWidth="1024"
@@ -50,7 +51,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" x:Name="SideBarPanel" HorizontalAlignment="Stretch" Background="#0E1216">
+            <Grid Grid.Column="0" x:Name="SideBarPanel" HorizontalAlignment="Stretch" Background="#0E1216" Style="{StaticResource MainNavigationGrid}">
                 <!--Header-->
                 <StackPanel Margin="47,24,47,541" Orientation="Vertical">
                     <Image Height="52" Width="52" Source="{StaticResource LogoImg}"></Image>
@@ -59,29 +60,29 @@
                 <!--Navigation Panel-->
                 <StackPanel Margin="0,100,0,0">
                     <TextBlock Margin="10,24,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">PLAY</TextBlock>
-                    <Button Margin="0,14,0,0" Height="44">
+                    <Button x:Name="HomeBtn" Click="NavigateClick" Margin="0,14,0,0" Height="44" props:ButtonProperties.Selected="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource HomeImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#BCBCBC" FontSize="16" FontFamily="Inter" >Home</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"  FontSize="16" FontFamily="Inter" >Home</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Height="44">
+                    <Button Click="NavigateClick" Height="44">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,0,0,0" Height="24" Width="24" Source="{StaticResource GamesImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#BCBCBC" FontSize="16" FontFamily="Inter" >Games</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >Games</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Height="44">
+                    <Button Click="NavigateClick" Height="44">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-2,0,0" Height="24" Width="24" Source="{StaticResource ModsImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#BCBCBC" FontSize="16" FontFamily="Inter" >My Mods</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >My Mods</TextBlock>
                         </StackPanel>
                     </Button>
                     <TextBlock Margin="10,25,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">EXPLORE</TextBlock>
-                    <Button Margin="0,14,0,0" Height="44">
+                    <Button Click="NavigateClick" Margin="0,14,0,0" Height="44">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource SocialsImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" Foreground="#BCBCBC" FontSize="16" FontFamily="Inter">Socials</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter">Socials</TextBlock>
                         </StackPanel>
                     </Button>
                 </StackPanel>

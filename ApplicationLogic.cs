@@ -28,6 +28,7 @@ namespace ModificaWPF
             {
                 window.FrameContent = Application.Current.FindResource(page.Name);
             }
+
         }
 
         public void NavigateTo<TPage>() where TPage : Page => NavigateTo(typeof(TPage));

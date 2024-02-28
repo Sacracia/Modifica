@@ -1,4 +1,5 @@
-﻿using ModificaWPF.Pages;
+﻿using ModificaWPF.Models;
+using ModificaWPF.Pages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,12 +19,10 @@ using System.Windows.Shapes;
 
 namespace ModificaWPF
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private object frameContent;
+        private Button lastBtn;
 
         public object FrameContent
         {
@@ -49,6 +48,16 @@ namespace ModificaWPF
         private void MinimizeClick(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void NavigateClick(object sender, RoutedEventArgs e)
+        {
+            if (lastBtn != null)
+                lastBtn.SetValue(ButtonProperties.SelectedProperty, false);
+            else
+                HomeBtn.SetValue(ButtonProperties.SelectedProperty, false);
+            lastBtn = (Button)sender;
+            lastBtn.SetValue(ButtonProperties.SelectedProperty, true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
