@@ -52,11 +52,13 @@ namespace ModificaWPF
 
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
+            var elem = (Button)sender;
+            ApplicationLogic.Instance.NavigateTo(elem.Tag?.GetType());
             if (lastBtn != null)
                 lastBtn.SetValue(ButtonProperties.SelectedProperty, false);
             else
                 HomeBtn.SetValue(ButtonProperties.SelectedProperty, false);
-            lastBtn = (Button)sender;
+            lastBtn = elem;
             lastBtn.SetValue(ButtonProperties.SelectedProperty, true);
         }
 

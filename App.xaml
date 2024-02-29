@@ -9,6 +9,9 @@
         <ResourceDictionary>
             <!--Pages-->
             <pages:WelcomePage x:Key="WelcomePage"/>
+            <pages:GamesPage x:Key="GamesPage"/>
+            <pages:MyModsPage x:Key="MyModsPage"/>
+            <pages:SocialsPage x:Key="SocialsPage"/>
 
             <!--Styles-->
             <Style TargetType="Button">
@@ -69,6 +72,28 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="GameBtn" TargetType="{x:Type Button}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="Background" Value="#1A2026"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="BorderBrush" Value="#1A2026"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" CornerRadius="10">
+                                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#222931"/>
+                                    <Setter Property="BorderBrush" Value="#00C7F2"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style TargetType="Grid" x:Key="MainNavigationGrid" >
                 <Style.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -84,7 +109,7 @@
                     </Style>
                 </Style.Resources>
             </Style>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

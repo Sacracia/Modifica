@@ -68,6 +68,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\GamesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MyModsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SocialsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,7 +87,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ButtonProperties.cs" />
-    <Compile Include="Models\TextBlockProperties.cs" />
+    <Compile Include="Pages\GamesPage.xaml.cs">
+      <DependentUpon>GamesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MyModsPage.xaml.cs">
+      <DependentUpon>MyModsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SocialsPage.xaml.cs">
+      <DependentUpon>SocialsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
@@ -132,6 +152,17 @@
     <Resource Include="Images\WelcomePage\gamerImg.png" />
     <Resource Include="Images\WelcomePage\handshakeImg.png" />
     <Resource Include="Images\WelcomePage\snapImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GamesPage\hollowKnightImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GamesPage\etgImg.png" />
+    <Resource Include="Images\GamesPage\ror2Img.png" />
+    <Resource Include="Images\GamesPage\te2Img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\GamesPage\qmarkImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

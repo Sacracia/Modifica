@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0" Panel.ZIndex="100">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Cursor="">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Click="MinimizeClick" Width="39" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource MinimizeBtn}" VerticalAlignment="Stretch">
                     <Image Source="{StaticResource MinimizeImg}" Stretch="Fill" Width="15" Height="2"></Image>
                 </Button>
@@ -60,26 +60,26 @@
                 <!--Navigation Panel-->
                 <StackPanel Margin="0,100,0,0">
                     <TextBlock Margin="10,24,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">PLAY</TextBlock>
-                    <Button x:Name="HomeBtn" Click="NavigateClick" Margin="0,14,0,0" Height="44" props:ButtonProperties.Selected="True">
+                    <Button x:Name="HomeBtn" Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource WelcomePage}" props:ButtonProperties.Selected="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource HomeImg}"></Image>
                             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"  FontSize="16" FontFamily="Inter" >Home</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Click="NavigateClick" Height="44">
+                    <Button Click="NavigateClick" Height="44" Tag="{StaticResource GamesPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,0,0,0" Height="24" Width="24" Source="{StaticResource GamesImg}"></Image>
                             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >Games</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Click="NavigateClick" Height="44">
+                    <Button Click="NavigateClick" Height="44" Tag="{StaticResource MyModsPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-2,0,0" Height="24" Width="24" Source="{StaticResource ModsImg}"></Image>
                             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >My Mods</TextBlock>
                         </StackPanel>
                     </Button>
                     <TextBlock Margin="10,25,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">EXPLORE</TextBlock>
-                    <Button Click="NavigateClick" Margin="0,14,0,0" Height="44">
+                    <Button Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource SocialsPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource SocialsImg}"></Image>
                             <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter">Socials</TextBlock>
@@ -89,7 +89,7 @@
             </Grid>
 
             <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <Frame x:Name="MainFrame" Content="{Binding FrameContent}"/>
+                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Content="{Binding FrameContent}"/>
             </ScrollViewer>
         </Grid>
     </Grid>

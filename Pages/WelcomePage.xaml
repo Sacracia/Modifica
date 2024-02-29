@@ -3,11 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ModificaWPF.Pages"
+      xmlns:local="clr-namespace:ModificaWPF.Models"
+      xmlns:pages="clr-namespace:ModificaWPF.Pages"
       mc:Ignorable="d" 
       d:DesignWidth="850" Height="642"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
-      Background="#11171D" Title="WelcomePage">
+      Background="#11171D" Title="WelcomePage" UseLayoutRounding="True">
     <Page.Resources>
         <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/WelcomePage/logoImg120x120.png"/>
         <BitmapImage x:Key="GamerImg" UriSource="pack://application:,,,/Images/WelcomePage/gamerImg.png"/>

@@ -1,5 +1,4 @@
-﻿using ModificaWPF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +15,12 @@ using System.Windows.Shapes;
 
 namespace ModificaWPF.Pages
 {
-    public partial class WelcomePage : Page
+    /// <summary>
+    /// Логика взаимодействия для GamesPage.xaml
+    /// </summary>
+    public partial class GamesPage : Page
     {
-        public WelcomePage()
+        public GamesPage()
         {
             InitializeComponent();
         }
