@@ -68,6 +68,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\GamePages\EtGPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GamesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,6 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\ButtonProperties.cs" />
+    <Compile Include="Pages\GamePages\EtGPage.xaml.cs">
+      <DependentUpon>EtGPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +170,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\GamesPage\qmarkImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\EtGPage\etgHeader.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

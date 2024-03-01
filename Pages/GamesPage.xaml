@@ -36,7 +36,7 @@
                 <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 18</TextBlock>
             </StackPanel>
         </Button>
-        <Button Grid.Column="1" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}">
+        <Button Click="NavigateClick" Grid.Column="1" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource EtGPage}">
             <StackPanel Margin="7,11,0,0">
                 <Image Width="224" Height="92" Source="{StaticResource etgImg}" />
                 <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">Enter The Gungeon</TextBlock>

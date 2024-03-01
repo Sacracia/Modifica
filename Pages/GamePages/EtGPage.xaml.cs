@@ -1,5 +1,4 @@
-﻿using ModificaWPF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ModificaWPF.Pages
+namespace ModificaWPF.Pages.GamePages
 {
     /// <summary>
-    /// Логика взаимодействия для GamesPage.xaml
+    /// Логика взаимодействия для EtGPage.xaml
     /// </summary>
-    public partial class GamesPage : Page
+    public partial class EtGPage : Page
     {
-        public GamesPage()
+        public EtGPage()
         {
             InitializeComponent();
-        }
-
-        private void NavigateClick(object sender, RoutedEventArgs e)
-        {
-            var elem = (Button)sender;
-            ApplicationLogic.Instance.NavigateTo(elem.Tag?.GetType());
         }
     }
 }

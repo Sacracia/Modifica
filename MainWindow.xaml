@@ -88,9 +88,7 @@
                 </StackPanel>
             </Grid>
 
-            <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Content="{Binding FrameContent}"/>
-            </ScrollViewer>
+                <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding FrameContent}"/>
         </Grid>
     </Grid>
 </Window>
