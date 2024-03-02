@@ -24,5 +24,10 @@ namespace ModificaWPF.Pages.GamePages
         {
             InitializeComponent();
         }
+
+        private void NavigateClick(object sender, RoutedEventArgs e)
+        {
+            ApplicationLogic.Instance.NavigateTo(typeof(GamesPage));
+        }
     }
 }

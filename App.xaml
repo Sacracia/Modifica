@@ -96,6 +96,53 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="BackBtn" TargetType="{x:Type Button}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="TextBlock.FontFamily" Value="Inter"/>
+                <Setter Property="TextBlock.Foreground" Value="#BCBCBC"/>
+                <Setter Property="TextBlock.FontSize" Value="16"/>
+                <Setter Property="TextBlock.FontWeight" Value="Bold"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <ContentPresenter></ContentPresenter>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="TextBlock.Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="LoadBtn" TargetType="{x:Type Button}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Background" Value="#007BFF"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" BorderThickness="2" CornerRadius="10">
+                                <TextBlock FontFamily="Open Sans" FontWeight="ExtraBold" FontSize="24" Foreground="{TemplateBinding Foreground}" HorizontalAlignment="Center" VerticalAlignment="Center">Load mod</TextBlock>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Foreground" Value="#B5BDC5"/>
+                                    <Setter Property="Background" Value="#0662C6"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <Style TargetType="Grid" x:Key="MainNavigationGrid" >
                 <Style.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
@@ -111,6 +158,63 @@
                     </Style>
                 </Style.Resources>
             </Style>
+            
+            <!--Unity Styles-->
+            <Style x:Key="UnityButton" TargetType="{x:Type Button}">
+                <Setter Property="OverridesDefaultStyle" Value="True" />
+                <Setter Property="TextBlock.FontSize" Value="13"/>
+                <Setter Property="TextBlock.FontFamily" Value="Inter"/>
+                <Setter Property="TextBlock.FontWeight" Value="Regular"/>
+                <Setter Property="TextBlock.Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border BorderThickness="1" BorderBrush="Black" CornerRadius="3">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.3">
+                                        <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                        <GradientStop Color="#1B1B1B" Offset="0.2" />
+                                        <GradientStop Color="#524E4E" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="UnityCheckBox" TargetType="{x:Type CheckBox}">
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="FontFamily" Value="Inter"/>
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="FontWeight" Value="Regular"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Border Height="13" Width="13" BorderThickness="1" BorderBrush="Black" CornerRadius="3">
+                                        <Border.Background>
+                                            <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.3">
+                                                <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                                <GradientStop Color="#1B1B1B" Offset="0.2" />
+                                                <GradientStop Color="#524E4E" Offset="1.0" />
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <Grid>
+                                            <Border Height="7" Width="7" Background="#D9D9D9" CornerRadius="2"/>
+                                        </Grid>
+                                    </Border>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter Margin="7,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </BulletDecorator>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
             
             <!--ScrollBars-->
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">

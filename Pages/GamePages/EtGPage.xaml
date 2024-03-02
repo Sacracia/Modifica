@@ -22,12 +22,128 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
+        
+        <!--Header-->
         <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Stretch="Fill" Source="{StaticResource EtGHeaderImg}"/>
-        <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Orientation="Horizontal">
-            <StackPanel Orientation="Vertical">
-                <Button Height="19" Width="136"></Button>
-            </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical">
+            <Button Click="NavigateClick" HorizontalAlignment="Left" Margin="20,20,0,0" Height="19" Width="136" Style="{DynamicResource BackBtn}">
+                <TextBlock >&lt; Back to games</TextBlock>
+            </Button>
+            <TextBlock Margin="20,11,0,0" FontFamily="Inter" FontSize="36" Foreground="White" FontWeight="Bold">Enter The Gungeon</TextBlock>
+            <TextBlock Margin="20,0,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontWeight="SemiBold" FontSize="20">Options: 42</TextBlock>
+        </StackPanel>
+        <Button Margin="0,48,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" Width="181" Height="68" Style="{StaticResource LoadBtn}"/>
+    
+        <!--Body-->
+        <StackPanel Margin="26,30,0,0" Grid.Column="0" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock FontSize="13" FontWeight="Bold" Foreground="White">Player</TextBlock>
+            <Border Margin="0,7,0,0" Height="2" Width="113" Background="#ACFF35"></Border>
+            <CheckBox Margin="0,10,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Godmode" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Invulnerable" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Ghost" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Teleport (F2)" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="No Collision" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Invisible" Style="{StaticResource UnityCheckBox}"/>
+        </StackPanel>
+
+        <StackPanel Margin="0,30,0,0" Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock FontSize="13" FontWeight="Bold" Foreground="White">Weapon</TextBlock>
+            <Border Margin="0,7,0,0" Height="2" Width="113" Background="#ACFF35"></Border>
+            <CheckBox Margin="0,10,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="High Damage" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="infinite Ammo" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Infinite Clip" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Instant Charge" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="High Accuracy" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="Auto Aim" Style="{StaticResource UnityCheckBox}"/>
+        </StackPanel>
+
+        <StackPanel Margin="0,30,0,0" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock FontSize="13" FontWeight="Bold" Foreground="White">Level</TextBlock>
+            <Border HorizontalAlignment="Left" Margin="0,7,0,0" Height="2" Width="113" Background="#ACFF35"></Border>
+            <Button Margin="0,10,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Reveal Map</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Kill Everyone</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Go Next Level</TextBlock>
+            </Button>
+            <CheckBox Margin="0,10,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="Doors in rooms opened" Style="{StaticResource UnityCheckBox}"/>
+            <Button Margin="0,10,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Tier S</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Tier A</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Tier B</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Tier C</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Chest Tier Special</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Spawn Chest Chest Tier Rainbow</TextBlock>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Margin="26,30,0,0" Grid.Column="0" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock FontSize="13" FontWeight="Bold" Foreground="White">Map</TextBlock>
+            <Border Margin="0,7,0,0" HorizontalAlignment="Left" Height="2" Width="113" Background="#ACFF35"></Border>
+            <Button Margin="0,10,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Add 1000 Currency</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Max Currency</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Add Key</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Max Keys</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Add Rat Key</TextBlock>
+            </Button>
+            <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="Infinite Blanks" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="Infinite Ability" Style="{StaticResource UnityCheckBox}"/>
+            <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="No Cooldown Ability" Style="{StaticResource UnityCheckBox}"/>
+        </StackPanel>
+
+        <StackPanel Margin="0,30,0,0" Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left">
+            <TextBlock FontSize="13" FontWeight="Bold" Foreground="White">Breach</TextBlock>
+            <Border HorizontalAlignment="Left" Margin="0,7,0,0" Height="2" Width="113" Background="#ACFF35"></Border>
+            <CheckBox Margin="0,10,0,0" Width="113" Height="16" HorizontalAlignment="Left" Content="High Damage" Style="{StaticResource UnityCheckBox}"/>
+            <Button Margin="0,10,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>+100 Hegemony Credit</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Statue Stage 1</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Statue Stage 2</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Change To Alt Costume</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Unlock Sorceress</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Unlock Daisuke</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Unlock Tonic</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Unlock Meta Shop</TextBlock>
+            </Button>
+            <Button Margin="0,4,0,0" Width="195" Height="24" Style="{StaticResource UnityButton}">
+                <TextBlock>Unlock Boss-Rush</TextBlock>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>
