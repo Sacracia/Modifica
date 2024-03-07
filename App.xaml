@@ -8,6 +8,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <!--Pages-->
             <pages:WelcomePage x:Key="WelcomePage"/>
             <pages:GamesPage x:Key="GamesPage"/>

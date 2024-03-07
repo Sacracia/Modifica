@@ -29,7 +29,7 @@ namespace ModificaWPF.Pages
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
             var elem = (Button)sender;
-            ApplicationLogic.Instance.NavigateTo(elem.Tag?.GetType());
+            AppLogic.Instance.NavigateTo(elem.Tag?.GetType());
         }
     }
 }

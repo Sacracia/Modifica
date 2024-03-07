@@ -8,16 +8,18 @@ using System.Windows.Controls;
 
 namespace ModificaWPF
 {
-    internal class ApplicationLogic
+    internal class AppLogic : IDisposable
     {
-        private static ApplicationLogic s_instance;
+        private static AppLogic s_instance;
 
-        public static ApplicationLogic Instance
+        private AppLogic() { }
+
+        public static AppLogic Instance
         {
             get
             {
                 if (s_instance == null)
-                    s_instance = new ApplicationLogic();
+                    s_instance = new AppLogic();
                 return s_instance;
             }
         }
@@ -28,9 +30,13 @@ namespace ModificaWPF
             {
                 window.FrameContent = Application.Current.FindResource(page.Name);
             }
-
         }
 
         public void NavigateTo<TPage>() where TPage : Page => NavigateTo(typeof(TPage));
+
+        public void Dispose()
+        {
+            AppNotifier.Shutdown();
+        }
     }
 }

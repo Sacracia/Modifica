@@ -36,8 +36,9 @@ namespace ModificaWPF
 
         public MainWindow()
         {
+            AppNotifier.Setup();
             InitializeComponent();
-            ApplicationLogic.Instance.NavigateTo<WelcomePage>();
+            AppLogic.Instance.NavigateTo<WelcomePage>();
         }
 
         private void CloseClick(Object sender, RoutedEventArgs e)
@@ -53,7 +54,7 @@ namespace ModificaWPF
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
             var elem = (Button)sender;
-            ApplicationLogic.Instance.NavigateTo(elem.Tag?.GetType());
+            AppLogic.Instance.NavigateTo(elem.Tag?.GetType());
             if (lastBtn != null)
                 lastBtn.SetValue(ButtonProperties.SelectedProperty, false);
             else
