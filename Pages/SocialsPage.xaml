@@ -8,7 +8,7 @@
       d:DesignWidth="850" Height="749"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Background="#11171D" Title="SocialsPage"
-      >
+      FontFamily="{StaticResource Inter}">
     <Page.Resources>
         <BitmapImage x:Key="socialsHeaderImg" UriSource="pack://application:,,,/Images/SocialsPage/socialsHeaderImg.png"></BitmapImage>
         <BitmapImage x:Key="discordImg" UriSource="pack://application:,,,/Images/SocialsPage/discordImg.png"></BitmapImage>

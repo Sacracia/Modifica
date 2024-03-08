@@ -9,7 +9,7 @@
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         Title="MainWindow" Height="642" Width="1024" MinHeight="642" MinWidth="1024"
         WindowStyle="None" WindowStartupLocation="CenterScreen"
-        Background="#11171D">
+        Background="#11171D" FontFamily="{StaticResource Inter}">
     <Window.Resources>
         <BitmapImage x:Key="CloseImg" UriSource="pack://application:,,,/Images/closeImg.png"/>
         <BitmapImage x:Key="MinimizeImg" UriSource="pack://application:,,,/Images/minimizeImg.png"/>
@@ -55,30 +55,30 @@
                 <!--Header-->
                 <StackPanel Margin="47,24,47,541" Orientation="Vertical">
                     <Image Height="52" Width="52" Source="{StaticResource LogoImg}"></Image>
-                    <TextBlock Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" FontFamily="Inter" Foreground="#BCBCBC">MODIFICA</TextBlock>
+                    <TextBlock Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#BCBCBC">MODIFICA</TextBlock>
                 </StackPanel>
                 <!--Navigation Panel-->
                 <StackPanel Margin="0,100,0,0">
-                    <TextBlock Margin="10,24,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">PLAY</TextBlock>
+                    <TextBlock Margin="10,24,0,0" FontSize="10" FontWeight="Bold" Foreground="White">PLAY</TextBlock>
                     <Button x:Name="HomeBtn" Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource WelcomePage}" props:ButtonProperties.Selected="True">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource HomeImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"  FontSize="16" FontFamily="Inter" >Home</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"  FontSize="16" >Home</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Click="NavigateClick" Height="44" Tag="{StaticResource GamesPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,0,0,0" Height="24" Width="24" Source="{StaticResource GamesImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >Games</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" >Games</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Click="NavigateClick" Height="44" Tag="{StaticResource MyModsPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-2,0,0" Height="24" Width="24" Source="{StaticResource ModsImg}"></Image>
-                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" FontFamily="Inter" >My Mods</TextBlock>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" >My Mods</TextBlock>
                         </StackPanel>
                     </Button>
-                    <TextBlock Margin="10,25,0,0" FontSize="10" FontWeight="Bold" FontFamily="Inter" Foreground="White">EXPLORE</TextBlock>
+                    <TextBlock Margin="10,25,0,0" FontSize="10" FontWeight="Bold" Foreground="White">EXPLORE</TextBlock>
                     <Button Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource SocialsPage}">
                         <StackPanel Orientation="Horizontal">
                             <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource SocialsImg}"></Image>

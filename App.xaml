@@ -23,10 +23,6 @@
             <gpages:EtGPage x:Key="EtGPage"/>
 
             <!--Styles-->
-            <Style TargetType="Page">
-                <Setter Property="FontFamily" Value="{DynamicResource Inter}" />
-            </Style>
-    
             <Style TargetType="Button">
                 <Setter Property="OverridesDefaultStyle" Value="True" />
                 <Setter Property="Cursor" Value="Hand" />
