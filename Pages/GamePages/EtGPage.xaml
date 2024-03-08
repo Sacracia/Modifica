@@ -111,6 +111,10 @@
             <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="Infinite Blanks" Style="{StaticResource UnityCheckBox}"/>
             <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="Infinite Ability" Style="{StaticResource UnityCheckBox}"/>
             <CheckBox Margin="0,7,0,0" Width="195" Height="16" HorizontalAlignment="Left" Content="No Cooldown Ability" Style="{StaticResource UnityCheckBox}"/>
+            <TextBlock Margin="0,14,0,0" FontSize="13" Foreground="White" FontWeight="Regular" FontFamily="Inter">Movespeed</TextBlock>
+            <Slider Width="148" HorizontalAlignment="Left" Style="{StaticResource UnitySlider}" Margin="0,8,0,0"></Slider>
+            <TextBlock Margin="0,17,0,0" FontSize="13" Foreground="White" FontWeight="Regular" FontFamily="Inter">Camera distance</TextBlock>
+            <Slider Width="148" HorizontalAlignment="Left" Style="{StaticResource UnitySlider}" Margin="0,8,0,0"></Slider>
         </StackPanel>
 
         <StackPanel Margin="0,30,0,0" Grid.Column="1" Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Left">

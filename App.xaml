@@ -217,8 +217,39 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
-            
+
+            <ControlTemplate x:Key="SliderThumbHorizontalDefault" TargetType="{x:Type Thumb}">
+                <Grid UseLayoutRounding="True" VerticalAlignment="Center">
+                    <Border Height="10" Width="10" Background="#BCBCBC" BorderBrush="Black" BorderThickness="1" CornerRadius="2" VerticalAlignment="Center"/>
+                </Grid>
+            </ControlTemplate>
+            <Style x:Key="UnitySlider" TargetType="{x:Type Slider}">
+                <Setter Property="Background" Value="Red"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Slider">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="7"/>
+                                    <RowDefinition Height="2"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="1" BorderThickness="1" BorderBrush="Black" CornerRadius="3">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1" Opacity="0.3">
+                                            <GradientStop Color="#FFFFFF" Offset="0.0" />
+                                            <GradientStop Color="#1B1B1B" Offset="0.2" />
+                                            <GradientStop Color="#524E4E" Offset="1.0" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Thumb Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Center" HorizontalAlignment="Right" Template="{StaticResource SliderThumbHorizontalDefault}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <!--ScrollBars-->
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
                 <Setter Property="Template">
@@ -318,6 +349,7 @@
                     <ScrollBar x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
                 </Grid>
             </ControlTemplate>
+           
 
         </ResourceDictionary>
     </Application.Resources>

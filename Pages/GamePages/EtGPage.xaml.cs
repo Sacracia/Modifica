@@ -32,7 +32,7 @@ namespace ModificaWPF.Pages.GamePages
 
         private void LoadClick(object sender, RoutedEventArgs e)
         {
-            LoaderLogic.Instance.Load();
+            LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
         }
     }
 }
