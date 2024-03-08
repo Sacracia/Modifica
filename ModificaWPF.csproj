@@ -154,6 +154,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Inter-Bold.ttf" />
+    <Resource Include="Fonts\Inter-ExtraBold.ttf" />
+    <Resource Include="Fonts\Inter-Medium.ttf" />
+    <Resource Include="Fonts\Inter-Regular.ttf" />
+    <Resource Include="Fonts\Inter-SemiBold.ttf" />
+    <Resource Include="Fonts\Inter-Light.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -205,6 +211,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\EtGPage\etgHeader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SocialsPage\socialsHeaderImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SocialsPage\githubImg.png" />
+    <Resource Include="Images\SocialsPage\youtubeImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SocialsPage\discordImg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

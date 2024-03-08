@@ -29,8 +29,8 @@
             <Button Click="NavigateClick" HorizontalAlignment="Left" Margin="20,20,0,0" Height="19" Width="136" Style="{DynamicResource BackBtn}">
                 <TextBlock >&lt; Back to games</TextBlock>
             </Button>
-            <TextBlock Margin="20,11,0,0" FontFamily="Inter" FontSize="36" Foreground="White" FontWeight="Bold">Enter The Gungeon</TextBlock>
-            <TextBlock Margin="20,0,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontWeight="SemiBold" FontSize="20">Options: 42</TextBlock>
+            <TextBlock Margin="20,11,0,0" FontSize="36" Foreground="White" FontWeight="Bold">Enter The Gungeon</TextBlock>
+            <TextBlock Margin="20,0,0,0" Foreground="#BCBCBC" FontWeight="SemiBold" FontSize="20">Options: 42</TextBlock>
         </StackPanel>
         <Button Click="LoadClick" Margin="0,48,0,0" VerticalAlignment="Top" Grid.Column="2" Grid.Row="0" Width="181" Height="68" Style="{StaticResource LoadBtn}"/>
     
