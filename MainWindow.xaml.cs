@@ -39,6 +39,7 @@ namespace ModificaWPF
             AppNotifier.Setup();
             InitializeComponent();
             AppLogic.Instance.NavigateTo<WelcomePage>();
+            
         }
 
         private void CloseClick(Object sender, RoutedEventArgs e)

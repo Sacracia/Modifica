@@ -7,8 +7,28 @@
       mc:Ignorable="d" 
       d:DesignWidth="850" Height="642"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
-      Background="Yellow" Title="MyModsPage">
-    <Grid>
+      Background="#11171D" Title="MyModsPage">
+    <Grid x:Name="CustomModsGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="196"/>
+            <RowDefinition Height="178"/>
+            <RowDefinition Height="178"/>
+            <RowDefinition Height="178"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="266"/>
+            <ColumnDefinition Width="266"/>
+        </Grid.ColumnDefinitions>
         
+        <Border Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="1" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="1" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="2" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
+        <Border Grid.Row="2" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="242" Height="154" Background="#1A2026" CornerRadius="10"/>
     </Grid>
 </Page>

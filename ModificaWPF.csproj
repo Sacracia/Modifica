@@ -55,7 +55,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ModLoader">
+    <Reference Include="ModLoader, Version=1.0.8783.29467, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\gleb\Downloads\ModLoader.dll</HintPath>
     </Reference>
     <Reference Include="System" />
