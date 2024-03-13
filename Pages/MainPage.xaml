@@ -1,0 +1,75 @@
+﻿<Page x:Class="ModificaWPF.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ModificaWPF.Pages"
+      xmlns:props="clr-namespace:ModificaWPF.Models"
+      mc:Ignorable="d" 
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="642" Width="1024" MinHeight="642" MinWidth="1024"
+        Background="#11171D" FontFamily="{StaticResource Inter}">
+    <Page.Resources>
+        <BitmapImage x:Key="CloseImg" UriSource="pack://application:,,,/Images/closeImg.png"/>
+        <BitmapImage x:Key="MinimizeImg" UriSource="pack://application:,,,/Images/minimizeImg.png"/>
+        <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/logoImg.png"/>
+        <BitmapImage x:Key="HomeImg" UriSource="pack://application:,,,/Images/homeImg.png"/>
+        <BitmapImage x:Key="GamesImg" UriSource="pack://application:,,,/Images/gamesImg.png"/>
+        <BitmapImage x:Key="ModsImg" UriSource="pack://application:,,,/Images/modsImg.png"/>
+        <BitmapImage x:Key="SocialsImg" UriSource="pack://application:,,,/Images/socialsImg.png"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="22"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Margin="0,-22,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="174"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" x:Name="SideBarPanel" HorizontalAlignment="Stretch" Background="#0E1216" Style="{StaticResource MainNavigationGrid}">
+                <!--Header-->
+                <StackPanel Margin="47,24,47,541" Orientation="Vertical">
+                    <Image Height="52" Width="52" Source="{StaticResource LogoImg}"></Image>
+                    <TextBlock Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#BCBCBC">MODIFICA</TextBlock>
+                </StackPanel>
+                <!--Navigation Panel-->
+                <StackPanel Margin="0,100,0,0">
+                    <TextBlock Margin="10,24,0,0" FontSize="10" FontWeight="Bold" Foreground="White">PLAY</TextBlock>
+                    <Button x:Name="HomeBtn" Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource WelcomePage}" props:ButtonProperties.Selected="True">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource HomeImg}"></Image>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center"  FontSize="16" >Home</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="NavigateClick" Height="44" Tag="{StaticResource GamesPage}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin ="21,0,0,0" Height="24" Width="24" Source="{StaticResource GamesImg}"></Image>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" >Games</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Click="NavigateClick" Height="44" Tag="{StaticResource MyModsPage}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin ="21,-2,0,0" Height="24" Width="24" Source="{StaticResource ModsImg}"></Image>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16" >My Mods</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <TextBlock Margin="10,25,0,0" FontSize="10" FontWeight="Bold" Foreground="White">EXPLORE</TextBlock>
+                    <Button Click="NavigateClick" Margin="0,14,0,0" Height="44" Tag="{StaticResource SocialsPage}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin ="21,-4,0,0" Height="24" Width="24" Source="{StaticResource SocialsImg}"></Image>
+                            <TextBlock Margin="20,0,0,0" VerticalAlignment="Center" FontSize="16">Socials</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Column="1" Template="{DynamicResource ScrollViewerMainframe}" x:Name="ScrollViewerMainframe">
+                <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding FrameContent}"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

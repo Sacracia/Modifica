@@ -39,7 +39,7 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource discordImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Join Discord"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Join Discord" FontSize="15"/>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Discord</TextBlock>
                     <TextBlock FontFamily="{DynamicResource Inter}" Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
@@ -57,7 +57,7 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource youtubeImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Watch Videos"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Watch Videos" FontSize="15"/>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Youtube</TextBlock>
                     <TextBlock Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
@@ -73,7 +73,7 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource githubImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Go Source"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Go Source" FontSize="15"/>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Github</TextBlock>
                     <TextBlock Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">

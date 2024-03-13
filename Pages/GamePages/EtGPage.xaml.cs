@@ -15,7 +15,7 @@ namespace ModificaWPF.Pages.GamePages
 
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
-            AppLogic.Instance.NavigateTo(typeof(GamesPage));
+           AppLogic.Instance.NavigateTo(typeof(GamesPage));
         }
 
         private void LoadClick(object sender, RoutedEventArgs e)
