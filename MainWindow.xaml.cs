@@ -24,11 +24,13 @@ namespace ModificaWPF
         {
             AppNotifier.Setup();
             InitializeComponent();
+            LoaderLogic.Instance.Deserialize();
             AppLogic.Instance.MainNavigateTo<MainPage>();
         }
 
         private void CloseClick(Object sender, RoutedEventArgs e)
         {
+            LoaderLogic.Instance.Serialize();
             Close();
         }
 

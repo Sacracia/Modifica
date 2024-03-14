@@ -203,7 +203,68 @@
                 <Setter Property="HorizontalAlignment" Value="Left"/>
             </Style>
 
-                <!--Unity Styles-->
+            <ControlTemplate TargetType="ToggleButton" x:Key="ComboBoxToggleButtonTemplate">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.ColumnSpan="2" Name="Border"
+              BorderBrush="#1D2329" 
+              CornerRadius="0" BorderThickness="1, 1, 1, 1" 
+              Background="#1D2329" />
+                    <Border Grid.Column="1" Margin="1, 1, 1, 1" BorderBrush="#444" Name="ButtonBorder"
+              CornerRadius="0, 0, 0, 0" BorderThickness="0, 0, 0, 0" 
+              Background="#1D2329" />
+
+                    <Path Name="Arrow" Grid.Column="1" 
+            Data="M0,0 L0,2 L4,6 L8,2 L8,0 L4,4 z"
+            HorizontalAlignment="Center" Fill="#444"
+            VerticalAlignment="Center" />
+                </Grid>
+            </ControlTemplate>
+
+            <Style TargetType="{x:Type Button}" x:Key="LoadCustomModBtn">
+                <Setter Property="Background" Value="#007CFF"/>
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="13" Height="29" Width="44">
+                                <Polygon Points="16,6 31,14, 16,23" Fill="{TemplateBinding Foreground}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#0662C6"/>
+                                    <Setter Property="Foreground" Value="#B5BDC5"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <ControlTemplate TargetType="{x:Type Button}" x:Key="CustomModCard">
+                <Border Height="154" Width="242" Background="#1A2026" CornerRadius="10">
+                    <StackPanel Margin="8,8,0,0" Orientation="Vertical">
+                        <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" FontFamily="{DynamicResource Inter}" Text="{TemplateBinding Content}"/>
+                        <TextBlock Height="81" FontSize="13" FontWeight="Medium" Foreground="#BCBCBC" FontFamily="{DynamicResource Inter}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Width="44" Height="29" Style="{StaticResource LoadCustomModBtn}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="true">
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <!--Unity Styles-->
             <Style x:Key="UnityButton" TargetType="{x:Type Button}">
                 <Setter Property="OverridesDefaultStyle" Value="True" />
                 <Setter Property="TextBlock.FontSize" Value="11"/>
@@ -264,6 +325,7 @@
                     <Border Height="10" Width="10" Background="#BCBCBC" BorderBrush="Black" BorderThickness="1" CornerRadius="2" VerticalAlignment="Center"/>
                 </Grid>
             </ControlTemplate>
+            
             <Style x:Key="UnitySlider" TargetType="{x:Type Slider}">
                 <Setter Property="Background" Value="Red"/>
                 <Setter Property="Template">

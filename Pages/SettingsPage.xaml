@@ -25,11 +25,31 @@
         </Button>
         <StackPanel Grid.Row="1" Margin="73,0,0,0">
             <TextBlock Foreground="#AAAAAA" FontSize="14">Name / Game:</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Naming"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Number of options:</TextBlock>
-            <TextBox Height="28" Width="61" MaxLength="3"/>
+            <TextBox Height="28" Width="61" MaxLength="3" Name="OptsNum"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Description:</TextBlock>
-            <TextBox Height="90" Width="382" MaxLength="100" TextWrapping="Wrap" AcceptsReturn="True" MaxLines="3"/>
+            <TextBox Height="90" Width="382" MaxLength="100" TextWrapping="Wrap" AcceptsReturn="True" MaxLines="3" Name="Desc"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Process name (.exe)</TextBlock>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="ProcName"/>
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Path to file mod (.dll)</TextBlock>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath"/>
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Namespace:</TextBlock>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="NSpace"/>
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Class:</TextBlock>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Klass"/>
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Method:</TextBlock>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Method"/>
+            <TextBlock Foreground="#AAAAAA" FontSize="14">Harmony version:</TextBlock>
+            <ComboBox Margin="0,8,0,0" HorizontalAlignment="Left" Height="28" Width="118" VerticalContentAlignment="Center" SelectedIndex="0" Name="HarmonyVersion">
+                <ComboBoxItem Content="None"/>
+                <ComboBoxItem Content="35"/>
+                <ComboBoxItem Content="452"/>
+                <ComboBoxItem Content="472"/>
+                <ComboBoxItem Content="48"/>
+            </ComboBox>
         </StackPanel>
         <Button Click="SaveClick" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}"  FontSize="20" Content="Save"/>
     </Grid>

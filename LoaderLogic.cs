@@ -1,28 +1,61 @@
-﻿using ModLoader;
+﻿using ModificaWPF.Pages;
+using ModLoader;
 using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.Diagnostics;
-using ToastNotifications;
-
+using System.IO;
+using System.Security.Policy;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace ModificaWPF
 {
-    public class LoadConfig
+    public class UserModConfig
     {
-        internal string ProcName { get; private set; }
-        internal string HarmonyPath { get; private set; }
-        internal string ModPath { get; private set; }
-        internal string Nspace { get; private set; }
-        internal string Klass { get; private set; }
-        internal string Method { get; private set; }
-        internal int ProcId { get; set; }
-        internal LoadConfig(string _procName, string _harmonyPath, string _modPath, string _nspace, string _klass, string _method)
+        public string Naming { get; set; }
+        public int OptionsNumber { get; set; }
+        public string Description { get; set; }
+        public string ProcName { get; set; }
+        public string ModPath { get; set; }
+        public string Nspace { get; set; }
+        public string Klass { get; set; }
+        public string Method { get; set; }
+        public int ProcId { get; set; }
+        public string HarmonyVersion { get; set; }
+        public UserModConfig() { }
+        internal UserModConfig(string _name, int _optionsNum, string description, string _procName, string _modPath, string _nspace, string _klass, string _method, string harmonyVersion)
         {
+            Naming = _name;
+            OptionsNumber = _optionsNum;
+            Description = description;
             ProcName = _procName;
-            HarmonyPath = _harmonyPath;
             ModPath = _modPath;
             Nspace = _nspace;
             Klass = _klass;
             Method = _method;
+            ProcId = -1;
+            HarmonyVersion = harmonyVersion;
+        }
+    }
+
+    public class ModConfig
+    {
+        public string ProcName { get; private set; }
+        public string ModUrl { get; private set; }
+        public string HarmonyUrl { get; private set; }
+        public string Namespace { get; private set; }
+        public string Class { get; private set; }
+        public string Method { get; private set; }
+        public int ProcId { get; set; }
+        public ModConfig(string _procName, string _modUrl, string _harmonyUrl, string _namespace, string _class, string _method)
+        {
+            ProcName = _procName;
+            ModUrl = _modUrl;
+            Namespace = _namespace;
+            Class = _class;
+            Method = _method;
+            HarmonyUrl = _harmonyUrl;
             ProcId = -1;
         }
     }
@@ -55,10 +88,15 @@ namespace ModificaWPF
     public class LoaderLogic
     {
         private static LoaderLogic s_instance = null;
-        public LoadConfig etgConfig;
+        public ModConfig etgConfig;
+        public List<UserModConfig> userConfigs = new List<UserModConfig>();
 
         private LoaderLogic() {
-            etgConfig = new LoadConfig("EtG", "C:\\Users\\gleb\\Downloads\\0Harmony1.dll", "C:\\Users\\gleb\\Downloads\\EtGModMenu.dll", "EtGModMenu", "Loader", "Init");
+            etgConfig = new ModConfig(
+                "EtG", 
+                "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/EtGModMenu.dll",
+                "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/0Harmony.dll", 
+                "EtGModMenu", "Loader", "Init");
         }
 
         public static LoaderLogic Instance
@@ -69,6 +107,34 @@ namespace ModificaWPF
                     s_instance = new LoaderLogic();
                 return s_instance;
             }
+        }
+
+        public bool AddConfig(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method, string harmonyVersion)
+        {
+            if (!new List<string>{ naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion }.Contains(string.Empty))
+            {
+                if (int.TryParse(optsnum, out int val) && App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.pos < 8)
+                {
+                    userConfigs.Add(new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion));
+                    myModsPage.AddCard(naming, val, desc);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool AddConfig(UserModConfig cfg)
+        {
+            if (!new List<string> { cfg.Naming, cfg.OptionsNumber.ToString(), cfg.Description, cfg.ProcName, cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method, cfg.HarmonyVersion }.Contains(string.Empty))
+            {
+                if (App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.pos < 8)
+                {
+                    userConfigs.Add(cfg);
+                    myModsPage.AddCard(cfg.Naming, cfg.OptionsNumber, cfg.Description);
+                    return true;
+                }
+            }
+            return false;
         }
 
         private string StatusToString(int status)
@@ -86,7 +152,7 @@ namespace ModificaWPF
             return $"{errorLocation}({injectorStatus})";
         }
 
-        public void Load(LoadConfig cfg)
+        public void Load(ModConfig cfg)
         {
             Process[] res = Process.GetProcessesByName(cfg.ProcName);
             if (res.Length > 0)
@@ -99,10 +165,13 @@ namespace ModificaWPF
 
                 using (MonoProcess mp = new MonoProcess(res[0].Id))
                 {
-                    int status = mp.LoadDependencyFrom(cfg.HarmonyPath);
+                    AppNotifier.Info("Loading...");
+                    byte[] harmonyInBytes = new System.Net.WebClient().DownloadData(cfg.HarmonyUrl);
+                    int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
                     if (status == 0)
                     {
-                        status = mp.LoadModFrom(cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method);
+                        byte[] modInBytes = new System.Net.WebClient().DownloadData(cfg.ModUrl);
+                        status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
                         if (status == 0)
                         {
                             AppNotifier.Success("OK");
@@ -120,6 +189,43 @@ namespace ModificaWPF
             else
             {
                 AppNotifier.Error("Process not found");
+            }
+        }
+
+        public void Serialize()
+        {
+            if (userConfigs.Count == 0)
+                return;
+            try
+            {
+                using (FileStream fs = new FileStream("userMods.json", FileMode.OpenOrCreate))
+                {
+                    JsonSerializer.Serialize(fs, userConfigs);
+                }
+            }
+            catch (Exception ex)
+            {
+                AppNotifier.Error(ex.Message);
+            }
+        }
+
+        public async void Deserialize()
+        {
+            try
+            {
+                if (!File.Exists("userMods.json"))
+                    return;
+                using (FileStream fs = new FileStream("userMods.json", FileMode.Open))
+                {
+                    var mods = await JsonSerializer.DeserializeAsync<List<UserModConfig>>(fs);
+                    foreach (UserModConfig cfg in mods)
+                    {
+                        AddConfig(cfg);
+                    }
+                }
+            }
+            catch (Exception ex) {
+                AppNotifier.Error(ex.Message);
             }
         }
 

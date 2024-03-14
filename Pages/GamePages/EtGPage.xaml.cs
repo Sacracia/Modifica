@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace ModificaWPF.Pages.GamePages
@@ -20,12 +21,23 @@ namespace ModificaWPF.Pages.GamePages
 
         private void LoadClick(object sender, RoutedEventArgs e)
         {
-            Button btn = (Button)sender;
-            btn.IsEnabled = false;
-            btn.Opacity = 0.7;
-            LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
-            btn.IsEnabled = true;
-            btn.Opacity = 1;
+
+            Dispatcher?.BeginInvoke(new Action(() =>
+            {
+                try
+                {
+                    Button btn = (Button)sender;
+                    btn.IsEnabled = false;
+                    btn.Opacity = 0.7;
+                    LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
+                    btn.IsEnabled = true;
+                    btn.Opacity = 1;
+                }
+                catch
+                {
+
+                }
+            }));
         }
     }
 }
