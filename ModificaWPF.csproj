@@ -265,5 +265,8 @@
   <ItemGroup>
     <Resource Include="Images\SocialsPage\discordImg.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settingsImg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

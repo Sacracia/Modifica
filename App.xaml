@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <BitmapImage x:Key="SettingsImg" UriSource="pack://application:,,,/Images/settingsImg.png"/>
 
             <!--Fonts-->
             <FontFamily x:Key="Inter">pack://application:,,,/Fonts/#Inter</FontFamily>
@@ -40,7 +41,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <Style x:Key="CloseBtn" TargetType="{x:Type Button}">
                 <Setter Property="OverridesDefaultStyle" Value="True" />
                 <Setter Property="Cursor" Value="Hand" />
@@ -247,15 +248,41 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="SettingsBtn" TargetType="{x:Type Button}">
+                <Setter Property="OpacityMask" Value="#BF000000"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border>
+                                <ContentPresenter>
+
+                                </ContentPresenter>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="OpacityMask" Value="#FF000000"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+
             <ControlTemplate TargetType="{x:Type Button}" x:Key="CustomModCard">
                 <Border Height="154" Width="242" Background="#1A2026" CornerRadius="10">
                     <StackPanel Margin="8,8,0,0" Orientation="Vertical">
-                        <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" FontFamily="{DynamicResource Inter}" Text="{TemplateBinding Content}"/>
-                        <TextBlock Height="81" FontSize="13" FontWeight="Medium" Foreground="#BCBCBC" FontFamily="{DynamicResource Inter}"/>
-                        <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" FontFamily="{DynamicResource Inter}" x:Name="Header"/>
+                        <TextBlock Margin="0,2,0,0" FontSize="12" FontWeight="Thin" Foreground="#BCBCBC" FontFamily="{DynamicResource Inter}" x:Name="Options"/>
+                        <TextBlock Margin="0,7,0,0" Height="47" FontSize="12" FontWeight="Thin" Foreground="#BCBCBC" TextWrapping="Wrap" FontFamily="{DynamicResource Inter}" x:Name="Description"/>
+                        <StackPanel Margin="0,11,0,0" Orientation="Horizontal">
                             <Button Width="44" Height="29" Style="{StaticResource LoadCustomModBtn}"/>
+                            <Button Width="24" Height="24" Margin="150,0" Style="{StaticResource SettingsBtn}">
+                                <Image Source="{StaticResource SettingsImg}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Button>
                         </StackPanel>
-                    </StackPanel>
+                        </StackPanel>
                 </Border>
                 <ControlTemplate.Triggers>
                     <Trigger Property="IsMouseOver" Value="true">

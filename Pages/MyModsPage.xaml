@@ -8,6 +8,9 @@
       d:DesignWidth="850" Height="642"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Background="#11171D" Title="MyModsPage">
+    <Page.Resources>
+        <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/settingsImg.png"/>
+    </Page.Resources>
     <Grid x:Name="CustomModsGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="196"/>
@@ -22,6 +25,5 @@
         </Grid.ColumnDefinitions>
 
         <Button Width="100" Height="100" Background="Red" x:Name="AddBtn" Click="AddBtn_Click"/>
-        
     </Grid>
 </Page>

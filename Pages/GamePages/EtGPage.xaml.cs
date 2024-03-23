@@ -1,6 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace ModificaWPF.Pages.GamePages
 {
@@ -19,25 +24,47 @@ namespace ModificaWPF.Pages.GamePages
            AppLogic.Instance.NavigateTo(typeof(GamesPage));
         }
 
-        private void LoadClick(object sender, RoutedEventArgs e)
+        private async void LoadClick(object sender, RoutedEventArgs e)
         {
-
-            Dispatcher?.BeginInvoke(new Action(() =>
+            if (sender is Button btn)
             {
-                try
+                await Func(btn);
+            }
+        }
+
+        private async Task Func(Button btn)
+        {
+            try
+            {
+                await App.Current.Dispatcher.Invoke(async () =>
                 {
-                    Button btn = (Button)sender;
                     btn.IsEnabled = false;
                     btn.Opacity = 0.7;
-                    LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
+                    //await Func2();
+                    await LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
+                    //await Task.Delay(1000);
                     btn.IsEnabled = true;
                     btn.Opacity = 1;
-                }
-                catch
-                {
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private async Task Func2()
+        {
+            await Task.Run(() =>
+            {
+                for (int i = 0; i < 100000000; ++i)
+                {
+                    for (int j = 0; j < 100000000; ++j)
+                    {
+
+                    }
                 }
-            }));
+            });
         }
     }
 }

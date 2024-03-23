@@ -8,6 +8,7 @@ using System.IO;
 using System.Security.Policy;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 
 namespace ModificaWPF
 {
@@ -152,44 +153,51 @@ namespace ModificaWPF
             return $"{errorLocation}({injectorStatus})";
         }
 
-        public void Load(ModConfig cfg)
+        public async Task Load(ModConfig cfg)
         {
-            Process[] res = Process.GetProcessesByName(cfg.ProcName);
-            if (res.Length > 0)
+            await Task.Run(() =>
             {
-                if (res[0].Id == cfg.ProcId)
+                App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                 {
-                    AppNotifier.Error("Mod already loaded");
-                    return;
-                }
 
-                using (MonoProcess mp = new MonoProcess(res[0].Id))
-                {
-                    AppNotifier.Info("Loading...");
-                    byte[] harmonyInBytes = new System.Net.WebClient().DownloadData(cfg.HarmonyUrl);
-                    int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
-                    if (status == 0)
+                    Process[] res = Process.GetProcessesByName(cfg.ProcName);
+                    if (res.Length > 0)
                     {
-                        byte[] modInBytes = new System.Net.WebClient().DownloadData(cfg.ModUrl);
-                        status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
-                        if (status == 0)
+                        if (res[0].Id == cfg.ProcId)
                         {
-                            AppNotifier.Success("OK");
-                            cfg.ProcId = res[0].Id;
+                            AppNotifier.Error("Mod already loaded");
+                            return;
                         }
-                        else
-                            AppNotifier.Error(StatusToString(status));
+
+                        using (MonoProcess mp = new MonoProcess(res[0].Id))
+                        {
+                            AppNotifier.Info("Loading...");
+                            byte[] harmonyInBytes = new System.Net.WebClient().DownloadData(cfg.HarmonyUrl);
+                            int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
+                            if (status == 0)
+                            {
+                                byte[] modInBytes = new System.Net.WebClient().DownloadData(cfg.ModUrl);
+                                status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
+                                if (status == 0)
+                                {
+                                    AppNotifier.Success("OK");
+                                    cfg.ProcId = res[0].Id;
+                                }
+                                else
+                                    AppNotifier.Error(StatusToString(status));
+                            }
+                            else
+                            {
+                                AppNotifier.Error($"Dependency:{StatusToString(status)}");
+                            }
+                        }
                     }
                     else
                     {
-                        AppNotifier.Error($"Dependency:{StatusToString(status)}");
+                        AppNotifier.Error("Process not found");
                     }
-                }
-            }
-            else
-            {
-                AppNotifier.Error("Process not found");
-            }
+                }));
+            });
         }
 
         public void Serialize()
