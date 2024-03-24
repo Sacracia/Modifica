@@ -22,6 +22,7 @@
             <pages:MyModsPage x:Key="MyModsPage"/>
             <pages:SocialsPage x:Key="SocialsPage"/>
             <pages:MainPage x:Key="MainPage"/>
+            <pages:NewModPage x:Key="NewModPage"/>
             <pages:SettingsPage x:Key="SettingsPage"/>
             <gpages:EtGPage x:Key="EtGPage"/>
 
@@ -158,6 +159,7 @@
                 <Setter Property="Cursor" Value="Hand"/>
                 <Setter Property="Foreground" Value="White"/>
                 <Setter Property="Background" Value="#007BFF"/>
+                <Setter Property="OpacityMask" Value="#FF000000"/>
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -167,7 +169,7 @@
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Foreground" Value="#B5BDC5"/>
-                                    <Setter Property="Background" Value="#0662C6"/>
+                                    <Setter Property="OpacityMask" Value="#BF000000"/>
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
@@ -278,7 +280,7 @@
                         <TextBlock Margin="0,7,0,0" Height="47" FontSize="12" FontWeight="Thin" Foreground="#BCBCBC" TextWrapping="Wrap" FontFamily="{DynamicResource Inter}" x:Name="Description"/>
                         <StackPanel Margin="0,11,0,0" Orientation="Horizontal">
                             <Button Width="44" Height="29" Style="{StaticResource LoadCustomModBtn}"/>
-                            <Button Width="24" Height="24" Margin="150,0" Style="{StaticResource SettingsBtn}">
+                            <Button x:Name="SettingsButton" Width="24" Height="24" Margin="150,0" Click="SettingsClick" Style="{StaticResource SettingsBtn}">
                                 <Image Source="{StaticResource SettingsImg}" RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
                         </StackPanel>

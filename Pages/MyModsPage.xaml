@@ -11,19 +11,9 @@
     <Page.Resources>
         <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/settingsImg.png"/>
     </Page.Resources>
-    <Grid x:Name="CustomModsGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="196"/>
-            <RowDefinition Height="178"/>
-            <RowDefinition Height="178"/>
-            <RowDefinition Height="178"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="280"/>
-            <ColumnDefinition Width="266"/>
-            <ColumnDefinition Width="266"/>
-        </Grid.ColumnDefinitions>
-
-        <Button Width="100" Height="100" Background="Red" x:Name="AddBtn" Click="AddBtn_Click"/>
+    <Grid>
+        <WrapPanel x:Name="CustomElements" Margin="14,18,0,0" Width="800" Height="534" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Width="242" Height="154" Margin="24,24,0,0" Background="Red" x:Name="AddBtn" Click="AddBtn_Click"/>
+        </WrapPanel>
     </Grid>
 </Page>

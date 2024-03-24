@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Linq;
 
 namespace ModificaWPF.Pages
 {
@@ -9,52 +13,59 @@ namespace ModificaWPF.Pages
     /// </summary>
     public partial class MyModsPage : Page
     {
-        public int pos = 0;
+        public int counter = 0;
         public MyModsPage()
         {
             InitializeComponent();
         }
 
-        public void AddCard(string name, int options, string desc)
+        public void AddCard(UserModConfig cfg, int pos)
         {
             if (pos < 8)
             {
                 Button b = new Button();
-                b.VerticalAlignment = VerticalAlignment.Bottom;
-                b.HorizontalAlignment = HorizontalAlignment.Right;
                 b.Template = (ControlTemplate)App.Current.Resources["CustomModCard"];
+                b.Margin = new Thickness(24, 24, 0, 0);
                 b.Loaded += (s, e) =>
                 {
                     TextBlock header = FindChild<TextBlock>(b, "Header");
                     TextBlock descr = FindChild<TextBlock>(b, "Description");
                     TextBlock opts = FindChild<TextBlock>(b, "Options");
-                    if (header != null)
-                    {
-                        header.Text = name;
-                    }
-                    if (descr != null)
-                    {
-                        descr.Text = $"Description: {desc}";
-                    }
-                    if (opts != null)
-                    {
-                        opts.Text = $"Options: {options}";
-                    }
+                    Button settingsBtn = FindChild<Button>(b, "SettingsButton");
+                    settingsBtn.Tag = cfg;
+
+                    Binding binding = new Binding();
+                    binding.Source = cfg;
+                    binding.Path = new PropertyPath("Naming");
+                    binding.Mode = BindingMode.TwoWay;
+                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                    header.SetBinding(TextBlock.TextProperty, binding);
+
+                    Binding bindingOpts = new Binding();
+                    bindingOpts.Source = cfg;
+                    bindingOpts.Path = new PropertyPath("OptionsNumber");
+                    bindingOpts.Mode = BindingMode.TwoWay;
+                    bindingOpts.StringFormat = "Options: {0}";
+                    bindingOpts.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                    opts.SetBinding(TextBlock.TextProperty, bindingOpts);
+
+                    Binding bindingDesc = new Binding();
+                    bindingDesc.Source = cfg;
+                    bindingDesc.Path = new PropertyPath("Description");
+                    bindingDesc.Mode = BindingMode.TwoWay;
+                    bindingDesc.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                    descr.SetBinding(TextBlock.TextProperty, bindingDesc);
                 };
-                Grid.SetColumn(b, pos % 3);
-                Grid.SetRow(b, pos / 3);
-                CustomModsGrid.Children.Add(b);
-                pos += 1;
-                Grid.SetRow(AddBtn, pos / 3);
-                Grid.SetColumn(AddBtn, pos % 3);
+                CustomElements.Children.Insert(pos, b);
+                counter += 1;
             }
         }
 
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (pos < 8)
+            if (counter < 8)
             {
-                AppLogic.Instance.MainNavigateTo<SettingsPage>();
+                AppLogic.Instance.MainNavigateTo<NewModPage>();
             }
         }
 

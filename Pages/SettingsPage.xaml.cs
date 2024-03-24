@@ -1,5 +1,17 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace ModificaWPF.Pages
 {
@@ -15,21 +27,6 @@ namespace ModificaWPF.Pages
 
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
-            AppLogic.Instance.MainNavigateTo<MainPage>();
-        }
-
-        private void SaveClick(object sender, RoutedEventArgs e)
-        {
-            if (Application.Current.FindResource("MyModsPage") is MyModsPage myModsPage)
-            {
-                if (myModsPage.pos < 8)
-                {
-                    if (!LoaderLogic.Instance.AddConfig(Naming.Text, OptsNum.Text, Desc.Text, ProcName.Text, FilePath.Text, NSpace.Text, Klass.Text, Method.Text, HarmonyVersion.Text))
-                    {
-                        AppNotifier.Error("Failed to add mod");
-                    }
-                }
-            }
             AppLogic.Instance.MainNavigateTo<MainPage>();
         }
     }

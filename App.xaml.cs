@@ -1,10 +1,12 @@
-﻿using System;
+﻿using ModificaWPF.Pages;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ModificaWPF
 {
@@ -13,5 +15,9 @@ namespace ModificaWPF
     /// </summary>
     public partial class App : Application
     {
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            AppLogic.Instance.MainNavigateTo<SettingsPage>();
+        }
     }
 }

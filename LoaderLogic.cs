@@ -3,16 +3,21 @@ using ModLoader;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace ModificaWPF
 {
-    public class UserModConfig
+    public class UserModConfig : INotifyPropertyChanged
     {
         public string Naming { get; set; }
         public int OptionsNumber { get; set; }
@@ -37,6 +42,12 @@ namespace ModificaWPF
             Method = _method;
             ProcId = -1;
             HarmonyVersion = harmonyVersion;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 
@@ -90,7 +101,7 @@ namespace ModificaWPF
     {
         private static LoaderLogic s_instance = null;
         public ModConfig etgConfig;
-        public List<UserModConfig> userConfigs = new List<UserModConfig>();
+        public UserModConfig[] userConfigs = new UserModConfig[8];
 
         private LoaderLogic() {
             etgConfig = new ModConfig(
@@ -110,14 +121,45 @@ namespace ModificaWPF
             }
         }
 
+        private int FindFreePosition()
+        {
+            for (int i = 0; i < 8; ++i)
+                if (userConfigs[i] == null)
+                    return i;
+            return -1;
+        }
+
+        private int Count()
+        {
+            int count = 0;
+            for (int i = 0; i < 8; ++i)
+                if (userConfigs[i] != null)
+                    count++;
+            return count;
+        }
+
+        public bool AreArgsCorrect(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method, string harmonyVersion)
+        {
+            return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion }.Contains(string.Empty);
+        }
+
+        public bool AreArgsCorrect(UserModConfig cfg)
+        {
+            return !new List<string> { cfg.Naming, cfg.OptionsNumber.ToString(), cfg.Description, cfg.ProcName, cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method, cfg.HarmonyVersion }.Contains(string.Empty);
+        }
+
         public bool AddConfig(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method, string harmonyVersion)
         {
-            if (!new List<string>{ naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion }.Contains(string.Empty))
+            if (AreArgsCorrect(naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion))
             {
-                if (int.TryParse(optsnum, out int val) && App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.pos < 8)
+                if (int.TryParse(optsnum, out int val) && App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.counter < 8)
                 {
-                    userConfigs.Add(new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion));
-                    myModsPage.AddCard(naming, val, desc);
+                    int pos = FindFreePosition();
+                    if (pos < 0)
+                        return false;
+                    UserModConfig cfg = new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion);
+                    userConfigs[pos] = cfg;
+                    myModsPage.AddCard(cfg, pos);
                     return true;
                 }
             }
@@ -126,12 +168,15 @@ namespace ModificaWPF
 
         public bool AddConfig(UserModConfig cfg)
         {
-            if (!new List<string> { cfg.Naming, cfg.OptionsNumber.ToString(), cfg.Description, cfg.ProcName, cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method, cfg.HarmonyVersion }.Contains(string.Empty))
+            if (AreArgsCorrect(cfg))
             {
-                if (App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.pos < 8)
+                if (App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.counter < 8)
                 {
-                    userConfigs.Add(cfg);
-                    myModsPage.AddCard(cfg.Naming, cfg.OptionsNumber, cfg.Description);
+                    int pos = FindFreePosition();
+                    if (pos < 0)
+                        return false;
+                    userConfigs[pos] = cfg;
+                    myModsPage.AddCard(cfg, pos);
                     return true;
                 }
             }
@@ -202,13 +247,13 @@ namespace ModificaWPF
 
         public void Serialize()
         {
-            if (userConfigs.Count == 0)
+            if (Count() == 0)
                 return;
             try
             {
                 using (FileStream fs = new FileStream("userMods.json", FileMode.OpenOrCreate))
                 {
-                    JsonSerializer.Serialize(fs, userConfigs);
+                    JsonSerializer.Serialize(fs, userConfigs.ToList());
                 }
             }
             catch (Exception ex)
@@ -228,7 +273,8 @@ namespace ModificaWPF
                     var mods = await JsonSerializer.DeserializeAsync<List<UserModConfig>>(fs);
                     foreach (UserModConfig cfg in mods)
                     {
-                        AddConfig(cfg);
+                        if (cfg != null)
+                            AddConfig(cfg);
                     }
                 }
             }
