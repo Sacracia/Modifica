@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ModificaWPF.Pages"
       mc:Ignorable="d" 
+      DataContext="{Binding RelativeSource={RelativeSource Self}}"
       Title="SettingsPage" Height="642" Width="1024" MinHeight="642" MinWidth="1024"
       Background="#11171D" FontFamily="{StaticResource Inter}">
     <Grid>
@@ -24,25 +25,25 @@
         </Button>
         <StackPanel Grid.Row="1" Margin="73,0,0,0">
             <TextBlock Foreground="#AAAAAA" FontSize="14">Name / Game:</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="Naming"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Naming" Text="{Binding GameName}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Number of options:</TextBlock>
-            <TextBox Height="28" Width="61" MaxLength="3" Name="OptsNum"/>
+            <TextBox Height="28" Width="61" MaxLength="3" Name="OptsNum" Text="{Binding Options}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Description:</TextBlock>
-            <TextBox Height="90" Width="382" MaxLength="100" TextWrapping="Wrap" AcceptsReturn="True" MaxLines="3" Name="Desc"/>
+            <TextBox Height="90" Width="382" MaxLength="100" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" MaxLines="3" Name="Desc"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="2">
             <TextBlock Foreground="#AAAAAA" FontSize="14">Process name (.exe)</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="ProcName"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="ProcName" Text="{Binding ProcessName}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Path to file mod (.dll)</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath" Text="{Binding ModPath}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Namespace:</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="NSpace"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="NSpace" Text="{Binding Namespace}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Class:</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="Klass"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Klass" Text="{Binding Class}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Method:</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="Method"/>
+            <TextBox Height="28" Width="382" MaxLength="50" Name="Method" Text="{Binding Methode}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Harmony version:</TextBlock>
-            <ComboBox Margin="0,8,0,0" HorizontalAlignment="Left" Height="28" Width="118" VerticalContentAlignment="Center" SelectedIndex="0" Name="HarmonyVersion">
+            <ComboBox Margin="0,8,0,0" HorizontalAlignment="Left" Height="28" Width="118" VerticalContentAlignment="Center" SelectedIndex="{Binding HarmonyV}" Name="HarmonyVersion">
                 <ComboBoxItem Content="None"/>
                 <ComboBoxItem Content="35"/>
                 <ComboBoxItem Content="452"/>
@@ -50,7 +51,7 @@
                 <ComboBoxItem Content="48"/>
             </ComboBox>
         </StackPanel>
-        <Button Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}"  FontSize="20" Content="Save"/>
-        <Button Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,31,0" Width="100" Height="45" Style="{StaticResource SocialBtn}" Background="#FF0000" FontSize="20" Content="Delete"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="SaveClick" FontSize="20" Content="Save"/>
+        <Button Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,31,0" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="DeleteClick" Background="#FF0000" FontSize="20" Content="Delete"/>
     </Grid>
 </Page>

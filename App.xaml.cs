@@ -17,7 +17,12 @@ namespace ModificaWPF
     {
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-            AppLogic.Instance.MainNavigateTo<SettingsPage>();
+            if (sender is Button settingsBtn)
+            {
+                SettingsPage page = (SettingsPage)Application.Current.FindResource("SettingsPage");
+                page.SetConfig((UserModConfig)settingsBtn.Tag);
+                AppLogic.Instance.MainNavigateTo<SettingsPage>();
+            }
         }
     }
 }

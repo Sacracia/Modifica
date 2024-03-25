@@ -28,9 +28,12 @@ namespace ModificaWPF.Pages
                     {
                         AppNotifier.Error("Failed to add mod");
                     }
+                    else
+                    {
+                        AppLogic.Instance.MainNavigateTo<MainPage>();
+                    }
                 }
             }
-            AppLogic.Instance.MainNavigateTo<MainPage>();
         }
     }
 }

@@ -29,8 +29,10 @@ namespace ModificaWPF
         public string Method { get; set; }
         public int ProcId { get; set; }
         public string HarmonyVersion { get; set; }
+        public int PosInArr { get; set; }
+        public int CardPos { get; set; }
         public UserModConfig() { }
-        internal UserModConfig(string _name, int _optionsNum, string description, string _procName, string _modPath, string _nspace, string _klass, string _method, string harmonyVersion)
+        internal UserModConfig(string _name, int _optionsNum, string description, string _procName, string _modPath, string _nspace, string _klass, string _method, string harmonyVersion, int posInArr)
         {
             Naming = _name;
             OptionsNumber = _optionsNum;
@@ -42,6 +44,7 @@ namespace ModificaWPF
             Method = _method;
             ProcId = -1;
             HarmonyVersion = harmonyVersion;
+            PosInArr = posInArr;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -138,9 +141,9 @@ namespace ModificaWPF
             return count;
         }
 
-        public bool AreArgsCorrect(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method, string harmonyVersion)
+        public bool AreArgsCorrect(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method)
         {
-            return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion }.Contains(string.Empty);
+            return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method}.Contains(string.Empty);
         }
 
         public bool AreArgsCorrect(UserModConfig cfg)
@@ -150,16 +153,16 @@ namespace ModificaWPF
 
         public bool AddConfig(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method, string harmonyVersion)
         {
-            if (AreArgsCorrect(naming, optsnum, desc, procName, modPath, nSpace, klass, method, harmonyVersion))
+            if (AreArgsCorrect(naming, optsnum, desc, procName, modPath, nSpace, klass, method))
             {
                 if (int.TryParse(optsnum, out int val) && App.Current.FindResource("MyModsPage") is MyModsPage myModsPage && myModsPage.counter < 8)
                 {
                     int pos = FindFreePosition();
                     if (pos < 0)
                         return false;
-                    UserModConfig cfg = new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion);
+                    UserModConfig cfg = new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion, pos);
                     userConfigs[pos] = cfg;
-                    myModsPage.AddCard(cfg, pos);
+                    myModsPage.AddCard(cfg);
                     return true;
                 }
             }
@@ -176,7 +179,7 @@ namespace ModificaWPF
                     if (pos < 0)
                         return false;
                     userConfigs[pos] = cfg;
-                    myModsPage.AddCard(cfg, pos);
+                    myModsPage.AddCard(cfg);
                     return true;
                 }
             }
@@ -247,12 +250,11 @@ namespace ModificaWPF
 
         public void Serialize()
         {
-            if (Count() == 0)
-                return;
             try
             {
                 using (FileStream fs = new FileStream("userMods.json", FileMode.OpenOrCreate))
                 {
+
                     JsonSerializer.Serialize(fs, userConfigs.ToList());
                 }
             }

@@ -8,9 +8,6 @@ using System.Xml.Linq;
 
 namespace ModificaWPF.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для MyModsPage.xaml
-    /// </summary>
     public partial class MyModsPage : Page
     {
         public int counter = 0;
@@ -19,8 +16,9 @@ namespace ModificaWPF.Pages
             InitializeComponent();
         }
 
-        public void AddCard(UserModConfig cfg, int pos)
+        public void AddCard(UserModConfig cfg)
         {
+            int pos = cfg.PosInArr;
             if (pos < 8)
             {
                 Button b = new Button();
@@ -56,7 +54,8 @@ namespace ModificaWPF.Pages
                     bindingDesc.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
                     descr.SetBinding(TextBlock.TextProperty, bindingDesc);
                 };
-                CustomElements.Children.Insert(pos, b);
+                cfg.CardPos = counter;
+                CustomElements.Children.Insert(counter, b);
                 counter += 1;
             }
         }
