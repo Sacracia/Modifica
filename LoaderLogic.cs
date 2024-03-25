@@ -132,15 +132,6 @@ namespace ModificaWPF
             return -1;
         }
 
-        private int Count()
-        {
-            int count = 0;
-            for (int i = 0; i < 8; ++i)
-                if (userConfigs[i] != null)
-                    count++;
-            return count;
-        }
-
         public bool AreArgsCorrect(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method)
         {
             return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method}.Contains(string.Empty);
@@ -248,13 +239,52 @@ namespace ModificaWPF
             });
         }
 
+        public void LoadCustomMod(UserModConfig cfg)
+        {
+            Process[] res = Process.GetProcessesByName(cfg.ProcName);
+            if (res.Length > 0)
+            {
+                if (res[0].Id == cfg.ProcId)
+                {
+                    AppNotifier.Error("Mod already loaded");
+                    return;
+                }
+
+                using (MonoProcess mp = new MonoProcess(res[0].Id))
+                {
+                    AppNotifier.Info("Loading...");
+                    int status = 0;
+                    if (cfg.HarmonyVersion != "None")
+                        status = mp.LoadDependencyFrom($"{System.AppDomain.CurrentDomain.BaseDirectory}\\Harmony\\net{cfg.HarmonyVersion}\\0Harmony.dll");
+                    if (status == 0)
+                    {
+                        status = mp.LoadModFrom(cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method);
+                        if (status == 0)
+                        {
+                            AppNotifier.Success("OK");
+                            cfg.ProcId = res[0].Id;
+                        }
+                        else
+                            AppNotifier.Error(StatusToString(status));
+                    }
+                    else
+                    {
+                        AppNotifier.Error($"Dependency:{StatusToString(status)}");
+                    }
+                }
+            }
+            else
+            {
+                AppNotifier.Error("Process not found");
+            }
+        }
+
         public void Serialize()
         {
             try
             {
-                using (FileStream fs = new FileStream("userMods.json", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream("userMods.json", FileMode.Create))
                 {
-
                     JsonSerializer.Serialize(fs, userConfigs.ToList());
                 }
             }

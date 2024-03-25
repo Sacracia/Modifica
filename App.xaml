@@ -5,7 +5,7 @@
              xmlns:ap="clr-namespace:ModificaWPF.Models"
              xmlns:pages="clr-namespace:ModificaWPF.Pages"
              xmlns:gpages="clr-namespace:ModificaWPF.Pages.GamePages"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml" >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -279,7 +279,7 @@
                         <TextBlock Margin="0,2,0,0" FontSize="12" FontWeight="Thin" Foreground="#BCBCBC" FontFamily="{DynamicResource Inter}" x:Name="Options"/>
                         <TextBlock Margin="0,7,0,0" Height="47" FontSize="12" FontWeight="Thin" Foreground="#BCBCBC" TextWrapping="Wrap" FontFamily="{DynamicResource Inter}" x:Name="Description"/>
                         <StackPanel Margin="0,11,0,0" Orientation="Horizontal">
-                            <Button Width="44" Height="29" Style="{StaticResource LoadCustomModBtn}"/>
+                            <Button x:Name="LoadModBtn" Width="44" Height="29" Click="LoadModClick" Style="{StaticResource LoadCustomModBtn}"/>
                             <Button x:Name="SettingsButton" Width="24" Height="24" Margin="150,0" Click="SettingsClick" Style="{StaticResource SettingsBtn}">
                                 <Image Source="{StaticResource SettingsImg}" RenderOptions.BitmapScalingMode="HighQuality"/>
                             </Button>
@@ -292,6 +292,31 @@
                     </Trigger>
                 </ControlTemplate.Triggers>
             </ControlTemplate>
+
+
+            <Style x:Key="AddBtn" TargetType="{x:Type Button}">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="Background" Value="#BCBCBC"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Canvas Width="66" Height="66" Background="Transparent">
+                                <Ellipse Width="66" Height="66" StrokeThickness="3" Stroke="{TemplateBinding Background}"/>
+                                <Line X1="16" Y1="33" X2="50" Y2="33" StrokeThickness="2" Stroke="{TemplateBinding Background}"/>
+                                <Line X1="33" Y1="16" X2="33" Y2="50" StrokeThickness="2" Stroke="{TemplateBinding Background}"/>
+                            </Canvas>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#007cff"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+           
+           
 
             <!--Unity Styles-->
             <Style x:Key="UnityButton" TargetType="{x:Type Button}">

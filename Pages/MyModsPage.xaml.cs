@@ -31,6 +31,8 @@ namespace ModificaWPF.Pages
                     TextBlock opts = FindChild<TextBlock>(b, "Options");
                     Button settingsBtn = FindChild<Button>(b, "SettingsButton");
                     settingsBtn.Tag = cfg;
+                    Button loadBtn = FindChild<Button>(b, "LoadModBtn");
+                    loadBtn.Tag = cfg;
 
                     Binding binding = new Binding();
                     binding.Source = cfg;

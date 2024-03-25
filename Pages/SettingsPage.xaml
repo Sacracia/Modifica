@@ -35,7 +35,10 @@
             <TextBlock Foreground="#AAAAAA" FontSize="14">Process name (.exe)</TextBlock>
             <TextBox Height="28" Width="382" MaxLength="50" Name="ProcName" Text="{Binding ProcessName}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Path to file mod (.dll)</TextBlock>
-            <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath" Text="{Binding ModPath}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath" Text="{Binding ModPath}"/>
+                <Button Margin="14,0" Width="21" Height="12" Background="White" Content="..." Click="ChoosePathClick"/>
+            </StackPanel>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Namespace:</TextBlock>
             <TextBox Height="28" Width="382" MaxLength="50" Name="NSpace" Text="{Binding Namespace}"/>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Class:</TextBlock>

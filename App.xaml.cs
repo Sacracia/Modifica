@@ -24,5 +24,13 @@ namespace ModificaWPF
                 AppLogic.Instance.MainNavigateTo<SettingsPage>();
             }
         }
+
+        private void LoadModClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button loadBtn)
+            {
+                LoaderLogic.Instance.LoadCustomMod(loadBtn.Tag as UserModConfig);
+            }
+        }
     }
 }

@@ -13,7 +13,13 @@
     </Page.Resources>
     <Grid>
         <WrapPanel x:Name="CustomElements" Margin="14,18,0,0" Width="800" Height="534" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Button Width="242" Height="154" Margin="24,24,0,0" Background="Red" x:Name="AddBtn" Click="AddBtn_Click"/>
+            <Border Margin="24,24,0,0" Height="154" Width="242" Background="#1A2026" CornerRadius="10">
+                <StackPanel Orientation="Vertical">
+                    <Button Margin="0,22,0,0" Height="66" Width="66" Style="{StaticResource AddBtn}" Click="AddBtn_Click" WindowChrome.IsHitTestVisibleInChrome="True"/>
+                    <TextBlock Margin="9,23,0,0" FontSize="16" Foreground="White" FontWeight="Bold" FontFamily="{StaticResource Inter}" Text="Add your mod"/>
+                    <TextBlock Margin="9,2,0,0" FontSize="13" Foreground="#BCBCBC" FontFamily="{StaticResource Inter}" Text="Description"/>
+                </StackPanel>
+            </Border>
         </WrapPanel>
     </Grid>
 </Page>
