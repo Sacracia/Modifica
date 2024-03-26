@@ -37,7 +37,9 @@
             <TextBlock Foreground="#AAAAAA" FontSize="14">Path to file mod (.dll)</TextBlock>
             <StackPanel Orientation="Horizontal">
                 <TextBox Height="28" Width="382" MaxLength="50" Name="FilePath" Text="{Binding ModPath}"/>
-                <Button Margin="14,0" Width="21" Height="12" Background="White" Content="..." Click="ChoosePathClick"/>
+                <Button Margin="14,0" Width="21" Height="12" Background="White" Click="ChoosePathClick">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text=" ..."/>
+                </Button>
             </StackPanel>
             <TextBlock Foreground="#AAAAAA" FontSize="14">Namespace:</TextBlock>
             <TextBox Height="28" Width="382" MaxLength="50" Name="NSpace" Text="{Binding Namespace}"/>

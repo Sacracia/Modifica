@@ -23,8 +23,8 @@ namespace ModificaWPF
         public MainWindow()
         {
             AppNotifier.Setup();
-            InitializeComponent();
             LoaderLogic.Instance.Deserialize();
+            InitializeComponent();
             AppLogic.Instance.MainNavigateTo<MainPage>();
         }
 

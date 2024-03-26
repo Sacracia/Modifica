@@ -1,36 +1,46 @@
 ﻿using ModificaWPF.Pages;
 using ModLoader;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text.Json;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Threading;
+using ZeroFormatter;
 
 namespace ModificaWPF
 {
+    [ZeroFormattable]
     public class UserModConfig : INotifyPropertyChanged
     {
-        public string Naming { get; set; }
-        public int OptionsNumber { get; set; }
-        public string Description { get; set; }
-        public string ProcName { get; set; }
-        public string ModPath { get; set; }
-        public string Nspace { get; set; }
-        public string Klass { get; set; }
-        public string Method { get; set; }
-        public int ProcId { get; set; }
-        public string HarmonyVersion { get; set; }
-        public int PosInArr { get; set; }
-        public int CardPos { get; set; }
+        [Index(0)]
+        public virtual string Naming { get; set; }
+        [Index(1)]
+        public virtual int OptionsNumber { get; set; }
+        [Index(2)]
+        public virtual string Description { get; set; }
+        [Index(3)]
+        public virtual string ProcName { get; set; }
+        [Index(4)]
+        public virtual string ModPath { get; set; }
+        [Index(5)]
+        public virtual string Nspace { get; set; }
+        [Index(6)]
+        public virtual string Klass { get; set; }
+        [Index(7)]
+        public virtual string Method { get; set; }
+        [Index(8)]
+        public virtual int ProcId { get; set; }
+        [Index(9)]
+        public virtual string HarmonyVersion { get; set; }
+        [Index(10)]
+        public virtual int PosInArr { get; set; }
+        [IgnoreFormat]
+        public virtual int CardPos { get; set; }
         public UserModConfig() { }
         internal UserModConfig(string _name, int _optionsNum, string description, string _procName, string _modPath, string _nspace, string _klass, string _method, string harmonyVersion, int posInArr)
         {
@@ -283,9 +293,10 @@ namespace ModificaWPF
         {
             try
             {
-                using (FileStream fs = new FileStream("userMods.json", FileMode.Create))
+                using (FileStream fs = new FileStream("config", FileMode.Create))
                 {
-                    JsonSerializer.Serialize(fs, userConfigs.ToList());
+                    byte[] fileInBytes = ZeroFormatterSerializer.Serialize(userConfigs);
+                    fs.Write(fileInBytes, 0, fileInBytes.Length);
                 }
             }
             catch (Exception ex)
@@ -294,24 +305,21 @@ namespace ModificaWPF
             }
         }
 
-        public async void Deserialize()
+        public void Deserialize()
         {
             try
             {
-                if (!File.Exists("userMods.json"))
+                if (!File.Exists("config"))
                     return;
-                using (FileStream fs = new FileStream("userMods.json", FileMode.Open))
+                byte[] fileInBytes = File.ReadAllBytes("config");
+                var userConfigsCopy = ZeroFormatterSerializer.Deserialize<UserModConfig[]>(fileInBytes);
+                for (int i = 0; i < 8 && userConfigsCopy[i] != null; i++)
                 {
-                    var mods = await JsonSerializer.DeserializeAsync<List<UserModConfig>>(fs);
-                    foreach (UserModConfig cfg in mods)
-                    {
-                        if (cfg != null)
-                            AddConfig(cfg);
-                    }
+                    AddConfig(userConfigsCopy[i]);
                 }
             }
             catch (Exception ex) {
-                AppNotifier.Error(ex.Message);
+                MessageBox.Show(ex.ToString());
             }
         }
 
