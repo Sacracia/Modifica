@@ -25,6 +25,7 @@
             <pages:NewModPage x:Key="NewModPage"/>
             <pages:SettingsPage x:Key="SettingsPage"/>
             <gpages:EtGPage x:Key="EtGPage"/>
+            <gpages:TE2Page x:Key="TE2Page"/>
 
             <!--Styles-->
             <Style TargetType="Button">

@@ -43,7 +43,7 @@
                 <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 42</TextBlock>
             </StackPanel>
         </Button>
-        <Button Grid.Column="2" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}">
+        <Button Click="NavigateClick" Grid.Column="2" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource TE2Page}">
             <StackPanel Margin="7,11,0,0">
                 <Image Width="224" Height="92" Source="{StaticResource te2Img}" />
                 <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">The Escapists 2</TextBlock>

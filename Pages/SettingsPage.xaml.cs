@@ -147,13 +147,9 @@ namespace ModificaWPF.Pages
         private void ChoosePathClick(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.DefaultExt = ".dll"; // Default file extension
-            dialog.Filter = "(.dll)|*.dll"; // Filter files by extension
-
-            // Show open file dialog box
+            dialog.DefaultExt = ".dll";
+            dialog.Filter = "(.dll)|*.dll";
             bool? result = dialog.ShowDialog();
-
-            // Process open file dialog box results
             if (result == true)
             {
                 ModPath = dialog.FileName;

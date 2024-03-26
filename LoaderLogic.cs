@@ -114,6 +114,7 @@ namespace ModificaWPF
     {
         private static LoaderLogic s_instance = null;
         public ModConfig etgConfig;
+        public ModConfig te2Config;
         public UserModConfig[] userConfigs = new UserModConfig[8];
 
         private LoaderLogic() {
@@ -122,6 +123,11 @@ namespace ModificaWPF
                 "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/EtGModMenu.dll",
                 "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/0Harmony.dll", 
                 "EtGModMenu", "Loader", "Init");
+            te2Config = new ModConfig(
+                "TheEscapists2",
+                "https://github.com/Sacracia/TE2ModMenu/releases/download/v1.0/TE2ModMenu.dll",
+                "https://github.com/Sacracia/TE2ModMenu/releases/download/v1.0/0Harmony.dll",
+                "TE2ModMenu", "Loader", "Init");
         }
 
         public static LoaderLogic Instance

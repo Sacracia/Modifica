@@ -10,7 +10,7 @@
       Background="#11171D" Title="EtGPage" UseLayoutRounding="True"
       FontFamily="{StaticResource Inter}">
     <Page.Resources>
-        <BitmapImage x:Key="EtGHeaderImg" UriSource="pack://application:,,,/Images/EtGPage/etgHeader.png"/>
+        <BitmapImage x:Key="EtGHeaderImg" UriSource="pack://application:,,,/Images/Headers/etgHeader.png"/>
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>

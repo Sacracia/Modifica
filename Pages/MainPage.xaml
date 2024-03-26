@@ -67,7 +67,7 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Column="1" Template="{DynamicResource ScrollViewerMainframe}" x:Name="ScrollViewerMainframe">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" WindowChrome.IsHitTestVisibleInChrome="True" VerticalScrollBarVisibility="Auto" Grid.Column="1" Template="{DynamicResource ScrollViewerMainframe}" x:Name="ScrollViewerMainframe">
                 <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding FrameContent}"/>
             </ScrollViewer>
         </Grid>

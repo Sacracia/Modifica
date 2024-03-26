@@ -35,5 +35,17 @@ namespace ModificaWPF.Pages
                 }
             }
         }
+
+        private void ChoosePathClick(object sender, RoutedEventArgs e)
+        {
+            var dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.DefaultExt = ".dll";
+            dialog.Filter = "(.dll)|*.dll";
+            bool? result = dialog.ShowDialog();
+            if (result == true)
+            {
+                FilePath.Text = dialog.FileName;
+            }
+        }
     }
 }

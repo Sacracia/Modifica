@@ -135,6 +135,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\GamePages\TE2Page.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GamesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -169,6 +173,9 @@
     <Compile Include="AppNotifier.cs" />
     <Compile Include="Pages\GamePages\EtGPage.xaml.cs">
       <DependentUpon>EtGPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GamePages\TE2Page.xaml.cs">
+      <DependentUpon>TE2Page.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\GamesPage.xaml.cs">
       <DependentUpon>GamesPage.xaml</DependentUpon>
@@ -264,7 +271,7 @@
     <Resource Include="Images\GamesPage\qmarkImg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\EtGPage\etgHeader.png" />
+    <Resource Include="Images\Headers\etgHeader.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\SocialsPage\socialsHeaderImg.png" />
@@ -278,6 +285,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\settingsImg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Headers\te2Header.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
