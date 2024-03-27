@@ -87,7 +87,7 @@ namespace ModificaWPF
         }
     }
 
-    enum InjectorStatus 
+    enum InjectorStatus
     {
         OK = 0,
         NO_PROCESS = 1,
@@ -119,11 +119,12 @@ namespace ModificaWPF
         public ModConfig te2Config;
         public UserModConfig[] userConfigs = new UserModConfig[8];
 
-        private LoaderLogic() {
+        private LoaderLogic()
+        {
             etgConfig = new ModConfig(
-                "EtG", 
+                "EtG",
                 "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/EtGModMenu.dll",
-                "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/0Harmony.dll", 
+                "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/0Harmony.dll",
                 "EtGModMenu", "Loader", "Init");
             te2Config = new ModConfig(
                 "TheEscapists2",
@@ -152,7 +153,7 @@ namespace ModificaWPF
 
         public bool AreArgsCorrect(string naming, string optsnum, string desc, string procName, string modPath, string nSpace, string klass, string method)
         {
-            return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method}.Contains(string.Empty);
+            return !new List<string> { naming, optsnum, desc, procName, modPath, nSpace, klass, method }.Contains(string.Empty);
         }
 
         public bool AreArgsCorrect(UserModConfig cfg)
@@ -331,7 +332,8 @@ namespace ModificaWPF
                     AddConfig(userConfigsCopy[i]);
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString());
             }
         }

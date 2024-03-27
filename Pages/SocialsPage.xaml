@@ -30,7 +30,7 @@
         <Grid Grid.ColumnSpan="3" Grid.Row="0">
             <StackPanel HorizontalAlignment="Left" Margin="33,29,0,0" Orientation="Vertical">
                 <TextBlock FontSize="40" FontWeight="Bold" Foreground="White">Socials</TextBlock>
-                <Image Margin="0,22,0,0" Width="750" Height="165" Source="{StaticResource socialsHeaderImg}"/>
+                <Image Margin="0,22,0,0" Width="750" Height="165" Source="{StaticResource socialsHeaderImg}" SnapsToDevicePixels="True"/>
             </StackPanel>
         </Grid>
         

@@ -9,9 +9,6 @@ using System.Windows.Threading;
 
 namespace ModificaWPF.Pages.GamePages
 {
-    /// <summary>
-    /// Логика взаимодействия для EtGPage.xaml
-    /// </summary>
     public partial class EtGPage : Page
     {
         public EtGPage()
@@ -21,7 +18,7 @@ namespace ModificaWPF.Pages.GamePages
 
         private void NavigateClick(object sender, RoutedEventArgs e)
         {
-           AppLogic.Instance.NavigateTo(typeof(GamesPage));
+            AppLogic.Instance.NavigateTo(typeof(GamesPage));
         }
 
         private async void LoadClick(object sender, RoutedEventArgs e)
@@ -40,9 +37,7 @@ namespace ModificaWPF.Pages.GamePages
                 {
                     btn.IsEnabled = false;
                     btn.Opacity = 0.7;
-                    //await Func2();
                     await LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
-                    //await Task.Delay(1000);
                     btn.IsEnabled = true;
                     btn.Opacity = 1;
                 });

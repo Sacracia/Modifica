@@ -291,4 +291,13 @@
     <Resource Include="Images\Headers\te2Header.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="MoveDependenciesToLib" AfterTargets="Build">
+        <ItemGroup>
+            <AllDependencies Include="$(TargetDir)*.dll" />
+            <AllDependencies Include="$(TargetDir)*.dll.config" />
+            <AllDependencies Include="$(TargetDir)*.xml" />
+            <AllDependencies Include="$(TargetDir)*.pdb" Exclude="$(TargetDir)ModificaWPF.pdb"/>
+        </ItemGroup>
+        <Move SourceFiles="@(AllDependencies)" DestinationFolder="$(TargetDir)lib" />
+    </Target>
 </Project>

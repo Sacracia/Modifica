@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ModificaWPF.Pages.GamePages
 {
-    /// <summary>
-    /// Логика взаимодействия для TE2Page.xaml
-    /// </summary>
     public partial class TE2Page : Page
     {
         public TE2Page()
@@ -46,9 +33,7 @@ namespace ModificaWPF.Pages.GamePages
                 {
                     btn.IsEnabled = false;
                     btn.Opacity = 0.7;
-                    //await Func2();
                     await LoaderLogic.Instance.Load(LoaderLogic.Instance.te2Config);
-                    //await Task.Delay(1000);
                     btn.IsEnabled = true;
                     btn.Opacity = 1;
                 });
