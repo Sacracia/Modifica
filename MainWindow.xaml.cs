@@ -1,7 +1,9 @@
 ﻿using ModificaWPF.Pages;
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace ModificaWPF
@@ -26,6 +28,17 @@ namespace ModificaWPF
             LoaderLogic.Instance.Deserialize();
             InitializeComponent();
             AppLogic.Instance.MainNavigateTo<MainPage>();
+            CheckVersion();
+        }
+
+        private async void CheckVersion()
+        {
+            Version currentVersion = Assembly.GetExecutingAssembly().GetName().Version;
+            Version v = await Downloader.GetLatestVersion();
+            if (v != null && v > currentVersion)
+            {
+                AppNotifier.Info($"Version {v} is available!");
+            }
         }
 
         private void CloseClick(Object sender, RoutedEventArgs e)

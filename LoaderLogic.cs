@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -39,6 +40,7 @@ namespace ModificaWPF
         public virtual string HarmonyVersion { get; set; }
         [Index(10)]
         public virtual int PosInArr { get; set; }
+        [Index(11)]
         [IgnoreFormat]
         public virtual int CardPos { get; set; }
         public UserModConfig() { }
@@ -212,9 +214,8 @@ namespace ModificaWPF
         {
             await Task.Run(() =>
             {
-                App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(async () =>
                 {
-
                     Process[] res = Process.GetProcessesByName(cfg.ProcName);
                     if (res.Length > 0)
                     {
@@ -227,30 +228,36 @@ namespace ModificaWPF
                         using (MonoProcess mp = new MonoProcess(res[0].Id))
                         {
                             AppNotifier.Info("Loading...");
-                            byte[] harmonyInBytes = new System.Net.WebClient().DownloadData(cfg.HarmonyUrl);
-                            int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
-                            if (status == 0)
+                            byte[] harmonyInBytes = await Downloader.DownloadFile(cfg.HarmonyUrl);
+                            if (harmonyInBytes != null)
                             {
-                                byte[] modInBytes = new System.Net.WebClient().DownloadData(cfg.ModUrl);
-                                status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
+                                int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
                                 if (status == 0)
                                 {
-                                    AppNotifier.Success("OK");
-                                    cfg.ProcId = res[0].Id;
+                                    byte[] modInBytes = await Downloader.DownloadFile(cfg.ModUrl);
+                                    if (modInBytes != null)
+                                    {
+                                        status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
+                                        if (status == 0)
+                                        {
+                                            AppNotifier.Success("OK");
+                                            cfg.ProcId = res[0].Id;
+                                        }
+                                        else
+                                            AppNotifier.Error(StatusToString(status));
+                                    }
+                                    else
+                                        AppNotifier.Error($"Unable to access {cfg.ModUrl}");
                                 }
                                 else
-                                    AppNotifier.Error(StatusToString(status));
+                                    AppNotifier.Error($"Dependency:{StatusToString(status)}");
                             }
                             else
-                            {
-                                AppNotifier.Error($"Dependency:{StatusToString(status)}");
-                            }
+                                AppNotifier.Error($"Unable to access {cfg.HarmonyUrl}");
                         }
                     }
                     else
-                    {
                         AppNotifier.Error("Process not found");
-                    }
                 }));
             });
         }

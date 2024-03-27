@@ -42,10 +42,6 @@ namespace ModificaWPF
                     cfg.Dispatcher = Application.Current.Dispatcher;
                 });
             }
-            else
-            {
-                //Log.Error("Notifier is already set up");
-            }
         }
 
         public static void Shutdown()

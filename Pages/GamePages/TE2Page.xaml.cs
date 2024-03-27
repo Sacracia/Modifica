@@ -47,7 +47,7 @@ namespace ModificaWPF.Pages.GamePages
                     btn.IsEnabled = false;
                     btn.Opacity = 0.7;
                     //await Func2();
-                    await LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
+                    await LoaderLogic.Instance.Load(LoaderLogic.Instance.te2Config);
                     //await Task.Delay(1000);
                     btn.IsEnabled = true;
                     btn.Opacity = 1;
