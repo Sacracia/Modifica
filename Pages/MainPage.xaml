@@ -34,7 +34,7 @@
             <Grid Grid.Column="0" x:Name="SideBarPanel" HorizontalAlignment="Stretch" Background="#0E1216" Style="{StaticResource MainNavigationGrid}">
                 <!--Header-->
                 <StackPanel Margin="47,24,47,541" Orientation="Vertical">
-                    <Image Height="52" Width="52" Source="{StaticResource LogoImg}"></Image>
+                    <Image Height="41" Width="64" Source="{StaticResource LogoImg}"></Image>
                     <TextBlock Margin="0,8,0,0" HorizontalAlignment="Center" FontSize="14" FontWeight="Bold" Foreground="#BCBCBC">MODIFICA</TextBlock>
                 </StackPanel>
                 <!--Navigation Panel-->

@@ -21,26 +21,32 @@ namespace ModificaWPF.Pages.GamePages
         {
             if (sender is Button btn)
             {
-                await Func(btn);
-            }
-        }
-
-        private async Task Func(Button btn)
-        {
-            try
-            {
-                await App.Current.Dispatcher.Invoke(async () =>
+                try
                 {
                     btn.IsEnabled = false;
                     btn.Opacity = 0.7;
-                    await LoaderLogic.Instance.Load(LoaderLogic.Instance.te2Config);
+                    var task = await LoaderLogic.Instance.Load(LoaderLogic.Instance.etgConfig);
+                    switch (task.Item1)
+                    {
+                        case 0:
+                            AppNotifier.Success(task.Item2);
+                            break;
+                        case 1:
+                            AppNotifier.Error(task.Item2);
+                            break;
+                        case 2:
+                            AppNotifier.Warning(task.Item2);
+                            break;
+                    }
                     btn.IsEnabled = true;
                     btn.Opacity = 1;
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    btn.IsEnabled = true;
+                    btn.Opacity = 1;
+                    AppNotifier.Error(ex.Message);
+                }
             }
         }
     }

@@ -8,9 +8,9 @@
       mc:Ignorable="d" 
       d:DesignWidth="850" Height="642"
       DataContext="{Binding RelativeSource={RelativeSource Self}}"
-      Background="#11171D" Title="WelcomePage" UseLayoutRounding="True">
+      Background="#11171D" Title="WelcomePage" UseLayoutRounding="True" SnapsToDevicePixels="True">
     <Page.Resources>
-        <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/WelcomePage/logoImg120x120.png"/>
+        <BitmapImage x:Key="LogoImg" UriSource="pack://application:,,,/Images/logoImg.png"/>
         <BitmapImage x:Key="GamerImg" UriSource="pack://application:,,,/Images/WelcomePage/gamerImg.png"/>
         <BitmapImage x:Key="SnapImg" UriSource="pack://application:,,,/Images/WelcomePage/snapImg.png"/>
         <BitmapImage x:Key="HandshakeImg" UriSource="pack://application:,,,/Images/WelcomePage/handshakeImg.png"/>
@@ -26,8 +26,8 @@
         <TextBlock Grid.Row="0" Margin="0,0,0,14" Width="620" VerticalAlignment="Bottom" TextAlignment="Center" FontFamily="Inter" FontSize="40" Foreground="White" FontWeight="SemiBold" TextWrapping="Wrap">Expand your gaming experience with</TextBlock>
         
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Image Margin="230,0,0,0" Height="120" Width="120" Source="{StaticResource LogoImg}"/>
-            <TextBlock Margin="30,0,0,0" VerticalAlignment="Center" FontSize="40" FontWeight="SemiBold" FontFamily="Inter" Foreground="White">MODIFICA</TextBlock>
+            <Image Margin="230,0,0,0" Height="81" Width="120" RenderOptions.BitmapScalingMode="Linear" Source="{StaticResource LogoImg}"/>
+            <TextBlock Margin="30,5,0,0" VerticalAlignment="Center" FontSize="40" FontWeight="SemiBold" FontFamily="Inter" Foreground="White">MODIFICA</TextBlock>
         </StackPanel>
 
         <StackPanel Margin="45,0,0,0" Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">

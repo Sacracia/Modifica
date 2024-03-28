@@ -211,95 +211,58 @@ namespace ModificaWPF
             return $"{errorLocation}({injectorStatus})";
         }
 
-        public async Task Load(ModConfig cfg)
-        {
-            await Task.Run(() =>
-            {
-                App.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(async () =>
-                {
-                    Process[] res = Process.GetProcessesByName(cfg.ProcName);
-                    if (res.Length > 0)
-                    {
-                        if (res[0].Id == cfg.ProcId)
-                        {
-                            AppNotifier.Error("Mod already loaded");
-                            return;
-                        }
-
-                        using (MonoProcess mp = new MonoProcess(res[0].Id))
-                        {
-                            AppNotifier.Info("Loading...");
-                            byte[] harmonyInBytes = await Downloader.DownloadFile(cfg.HarmonyUrl);
-                            if (harmonyInBytes != null)
-                            {
-                                int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
-                                if (status == 0)
-                                {
-                                    byte[] modInBytes = await Downloader.DownloadFile(cfg.ModUrl);
-                                    if (modInBytes != null)
-                                    {
-                                        status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
-                                        if (status == 0)
-                                        {
-                                            AppNotifier.Success("OK");
-                                            cfg.ProcId = res[0].Id;
-                                        }
-                                        else
-                                            AppNotifier.Error(StatusToString(status));
-                                    }
-                                    else
-                                        AppNotifier.Error($"Unable to access {cfg.ModUrl}");
-                                }
-                                else
-                                    AppNotifier.Error($"Dependency:{StatusToString(status)}");
-                            }
-                            else
-                                AppNotifier.Error($"Unable to access {cfg.HarmonyUrl}");
-                        }
-                    }
-                    else
-                        AppNotifier.Error("Process not found");
-                }));
-            });
-        }
-
-        public void LoadCustomMod(UserModConfig cfg)
+        public async Task<(int, string)> Load(ModConfig cfg)
         {
             Process[] res = Process.GetProcessesByName(cfg.ProcName);
-            if (res.Length > 0)
+            if (res.Length == 0)
+                return (1, "Process not found");
+            if (res[0].Id == cfg.ProcId)
             {
-                if (res[0].Id == cfg.ProcId)
-                {
-                    AppNotifier.Error("Mod already loaded");
-                    return;
-                }
-
-                using (MonoProcess mp = new MonoProcess(res[0].Id))
-                {
-                    AppNotifier.Info("Loading...");
-                    int status = 0;
-                    if (cfg.HarmonyVersion != "None")
-                        status = mp.LoadDependencyFrom($"{System.AppDomain.CurrentDomain.BaseDirectory}\\Harmony\\net{cfg.HarmonyVersion}\\0Harmony.dll");
-                    if (status == 0)
-                    {
-                        status = mp.LoadModFrom(cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method);
-                        if (status == 0)
-                        {
-                            AppNotifier.Success("OK");
-                            cfg.ProcId = res[0].Id;
-                        }
-                        else
-                            AppNotifier.Error(StatusToString(status));
-                    }
-                    else
-                    {
-                        AppNotifier.Error($"Dependency:{StatusToString(status)}");
-                    }
-                }
+                AppNotifier.Error("Mod already loaded");
+                return (1, "Mod already loaded");
             }
-            else
+            AppNotifier.Info("Loading...");
+            using (MonoProcess mp = new MonoProcess(res[0].Id))
             {
-                AppNotifier.Error("Process not found");
+                byte[] harmonyInBytes = await Downloader.DownloadFile(cfg.HarmonyUrl);
+                if (harmonyInBytes == null)
+                    return (1, $"Unable to access {cfg.HarmonyUrl}");
+                int status = mp.LoadDependency(harmonyInBytes, harmonyInBytes.Length);
+                if (status != 0)
+                    return (1, $"Dependency:{StatusToString(status)}");
+                byte[] modInBytes = await Downloader.DownloadFile(cfg.ModUrl);
+                if (modInBytes == null)
+                    return (1, $"Unable to access {cfg.ModUrl}");
+                status = mp.LoadMod(modInBytes, modInBytes.Length, cfg.Namespace, cfg.Class, cfg.Method);
+                if (status != 0)
+                    return (1, StatusToString(status));
+                cfg.ProcId = res[0].Id;
+                return (0, "Success");
+            }
+        }
+
+        public async Task<(int, string)> LoadCustomMod(UserModConfig cfg)
+        {
+            await Task.Delay(0);
+            Process[] res = Process.GetProcessesByName(cfg.ProcName);
+            if (res.Length == 0)
+                return (1, "Process not found");
+            if (res[0].Id == cfg.ProcId)
+                return (1, "Mod already loaded");
+
+            using (MonoProcess mp = new MonoProcess(res[0].Id))
+            {
+                AppNotifier.Info("Loading...");
+                int status = 0;
+                if (cfg.HarmonyVersion != "None")
+                    status = mp.LoadDependencyFrom($"{System.AppDomain.CurrentDomain.BaseDirectory}\\Harmony\\net{cfg.HarmonyVersion}\\0Harmony.dll");
+                if (status != 0)
+                    return (1, $"Dependency:{StatusToString(status)}");
+                status = mp.LoadModFrom(cfg.ModPath, cfg.Nspace, cfg.Klass, cfg.Method);
+                if (status != 0)
+                    return (1, StatusToString(status));
+                cfg.ProcId = res[0].Id;
+                return (0, "Success");
             }
         }
 

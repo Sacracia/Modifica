@@ -10,9 +10,6 @@ using System.Windows.Controls;
 
 namespace ModificaWPF
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
         private void SettingsClick(object sender, RoutedEventArgs e)
@@ -25,11 +22,36 @@ namespace ModificaWPF
             }
         }
 
-        private void LoadModClick(object sender, RoutedEventArgs e)
+        private async void LoadModClick(object sender, RoutedEventArgs e)
         {
-            if (sender is Button loadBtn)
+            if (sender is Button btn)
             {
-                LoaderLogic.Instance.LoadCustomMod(loadBtn.Tag as UserModConfig);
+                try
+                {
+                    btn.IsEnabled = false;
+                    btn.Opacity = 0.7;
+                    var task = await LoaderLogic.Instance.LoadCustomMod(btn.Tag as UserModConfig);
+                    switch (task.Item1)
+                    {
+                        case 0:
+                            AppNotifier.Success(task.Item2);
+                            break;
+                        case 1:
+                            AppNotifier.Error(task.Item2);
+                            break;
+                        case 2:
+                            AppNotifier.Warning(task.Item2);
+                            break;
+                    }
+                    btn.IsEnabled = true;
+                    btn.Opacity = 1;
+                }
+                catch (Exception ex)
+                {
+                    btn.IsEnabled = true;
+                    btn.Opacity = 1;
+                    AppNotifier.Error(ex.Message);
+                }
             }
         }
     }
