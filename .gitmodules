@@ -1,0 +1,3 @@
+[submodule "ModLoader"]
+	path = ModLoader
+	url = https://github.com/Sacracia/ModLoader
