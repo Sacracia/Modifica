@@ -5,12 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Security.Policy;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Threading;
 using ZeroFormatter;
 
 namespace ModificaWPF
@@ -57,6 +54,21 @@ namespace ModificaWPF
             ProcId = -1;
             HarmonyVersion = harmonyVersion;
             PosInArr = posInArr;
+        }
+
+        public UserModConfig(UserModConfig cfg)
+        {
+            Naming = cfg.Naming;
+            OptionsNumber = cfg.OptionsNumber;
+            Description = cfg.Description;
+            ProcName = cfg.ProcName;
+            ModPath = cfg.ModPath;
+            Nspace = cfg.Nspace;
+            Klass = cfg.Klass;
+            Method = cfg.Method;
+            ProcId = -1;
+            HarmonyVersion = cfg.HarmonyVersion;
+            PosInArr = cfg.PosInArr;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -218,7 +230,6 @@ namespace ModificaWPF
                 return (1, "Process not found");
             if (res[0].Id == cfg.ProcId)
             {
-                AppNotifier.Error("Mod already loaded");
                 return (1, "Mod already loaded");
             }
             AppNotifier.Info("Loading...");
@@ -292,7 +303,7 @@ namespace ModificaWPF
                 var userConfigsCopy = ZeroFormatterSerializer.Deserialize<UserModConfig[]>(fileInBytes);
                 for (int i = 0; i < 8 && userConfigsCopy[i] != null; i++)
                 {
-                    AddConfig(userConfigsCopy[i]);
+                    AddConfig(new UserModConfig(userConfigsCopy[i]));
                 }
             }
             catch (Exception ex)
