@@ -127,18 +127,18 @@ namespace ModificaWPF
     public class LoaderLogic
     {
         private static LoaderLogic s_instance = null;
-        public ModConfig etgConfig;
-        public ModConfig te2Config;
         public UserModConfig[] userConfigs = new UserModConfig[8];
+        public ModConfig EtgConfig { get; private set; }
+        public ModConfig TE2Config { get; private set; }
 
         private LoaderLogic()
         {
-            etgConfig = new ModConfig(
+            EtgConfig = new ModConfig(
                 "EtG",
                 "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/EtGModMenu.dll",
                 "https://github.com/Sacracia/EtGModMenu/releases/download/v1.0/0Harmony.dll",
                 "EtGModMenu", "Loader", "Init");
-            te2Config = new ModConfig(
+            TE2Config = new ModConfig(
                 "TheEscapists2",
                 "https://github.com/Sacracia/TE2ModMenu/releases/download/v1.0/TE2ModMenu.dll",
                 "https://github.com/Sacracia/TE2ModMenu/releases/download/v1.0/0Harmony.dll",
@@ -184,6 +184,7 @@ namespace ModificaWPF
                         return false;
                     UserModConfig cfg = new UserModConfig(naming, val, desc, procName, modPath, nSpace, klass, method, harmonyVersion, pos);
                     userConfigs[pos] = cfg;
+                    cfg.PosInArr = pos;
                     myModsPage.AddCard(cfg);
                     return true;
                 }
@@ -201,6 +202,7 @@ namespace ModificaWPF
                     if (pos < 0)
                         return false;
                     userConfigs[pos] = cfg;
+                    cfg.PosInArr = pos;
                     myModsPage.AddCard(cfg);
                     return true;
                 }
@@ -301,10 +303,9 @@ namespace ModificaWPF
                     return;
                 byte[] fileInBytes = File.ReadAllBytes("config");
                 var userConfigsCopy = ZeroFormatterSerializer.Deserialize<UserModConfig[]>(fileInBytes);
-                for (int i = 0; i < 8 && userConfigsCopy[i] != null; i++)
-                {
-                    AddConfig(new UserModConfig(userConfigsCopy[i]));
-                }
+                for (int i = 0; i < 8; i++)
+                    if (userConfigsCopy[i] != null)
+                        AddConfig(new UserModConfig(userConfigsCopy[i]));
             }
             catch (Exception ex)
             {

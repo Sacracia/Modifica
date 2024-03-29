@@ -56,7 +56,11 @@
                 <ComboBoxItem Content="48"/>
             </ComboBox>
         </StackPanel>
-        <Button Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="SaveClick" FontSize="20" Content="Save"/>
-        <Button Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,31,0" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="DeleteClick" Background="#FF0000" FontSize="20" Content="Delete"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="SaveClick" FontSize="20">
+            <TextBlock Text="Save" FontSize="19" FontWeight="Bold" Foreground="White"/>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,31,0" Width="100" Height="45" Style="{StaticResource SocialBtn}" Click="DeleteClick" Background="#FF0000" FontSize="20">
+            <TextBlock Text="Delete" FontSize="19" FontWeight="Bold" Foreground="White"/>
+        </Button>
     </Grid>
 </Page>
