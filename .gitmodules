@@ -1,3 +1,9 @@
 [submodule "ModLoader"]
 	path = ModLoader
 	url = https://github.com/Sacracia/ModLoader
+[submodule "TE2ModMenu"]
+	path = TE2ModMenu
+	url = https://github.com/Sacracia/TE2ModMenu
+[submodule "EtGModMenu"]
+	path = EtGModMenu
+	url = https://github.com/Sacracia/EtGModMenu
