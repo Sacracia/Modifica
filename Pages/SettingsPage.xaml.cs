@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ModificaWPF.Pages
 {
@@ -138,6 +127,9 @@ namespace ModificaWPF.Pages
             if (page != null)
             {
                 page.CustomElements.Children.RemoveAt(Config.CardPos);
+                foreach (UserModConfig cfg in LoaderLogic.Instance.userConfigs)
+                    if (cfg != null && cfg.CardPos > Config.CardPos)
+                        cfg.CardPos--;     
                 LoaderLogic.Instance.userConfigs[Config.PosInArr] = null;
                 page.counter--;
                 AppLogic.Instance.MainNavigateTo<MainPage>();

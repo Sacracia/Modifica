@@ -29,35 +29,22 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Grid.Column="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}">
-            <StackPanel Margin="7,11,0,0">
-                <Image Width="224" Height="92" Source="{StaticResource hollowKnightImg}" />
-                <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">Hollow Knight</TextBlock>
-                <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 18</TextBlock>
-            </StackPanel>
-        </Button>
-        <Button Click="NavigateClick" Grid.Column="1" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource EtGPage}">
+        
+        <Button Click="NavigateClick" Grid.Column="0" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource EtGPage}">
             <StackPanel Margin="7,11,0,0">
                 <Image Width="224" Height="92" Source="{StaticResource etgImg}" />
                 <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">Enter The Gungeon</TextBlock>
                 <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 42</TextBlock>
             </StackPanel>
         </Button>
-        <Button Click="NavigateClick" Grid.Column="2" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource TE2Page}">
+        <Button Click="NavigateClick" Grid.Column="1" Grid.Row="0" Width="242" Height="154" WindowChrome.IsHitTestVisibleInChrome="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" Tag="{StaticResource TE2Page}">
             <StackPanel Margin="7,11,0,0">
                 <Image Width="224" Height="92" Source="{StaticResource te2Img}" />
                 <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">The Escapists 2</TextBlock>
                 <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 22</TextBlock>
             </StackPanel>
         </Button>
-        <Button Grid.Column="0" Grid.Row="1" Width="242" Height="154" HorizontalAlignment="Right" VerticalAlignment="Center" Style="{DynamicResource GameBtn}">
-            <StackPanel Margin="7,11,0,0">
-                <Image Width="224" Height="92" Source="{StaticResource ror2Img}" />
-                <TextBlock Margin="0,8,0,0" FontFamily="Inter" FontSize="16" Foreground="White" FontWeight="Bold">Risk Of Rain 2</TextBlock>
-                <TextBlock Margin="0,2,0,0" Foreground="#BCBCBC" FontFamily="Inter" FontSize="13">Options: 30</TextBlock>
-            </StackPanel>
-        </Button>
-        <Button Grid.Column="1" Grid.Row="1" Width="242" Height="154" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource GameBtn}" IsEnabled="False">
+        <Button Grid.Column="2" Grid.Row="0" Width="242" Height="154" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource GameBtn}" IsEnabled="False">
             <StackPanel Margin="7,11,0,0">
                 <Border Width="224" Height="92" Background="#11171D" CornerRadius="10">
                     <Image Source="{StaticResource qmarkImg}" Height="67" Width="67"/>

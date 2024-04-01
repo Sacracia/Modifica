@@ -56,6 +56,8 @@
                 <ComboBoxItem Content="48"/>
             </ComboBox>
         </StackPanel>
-        <Button Click="SaveClick" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}"  FontSize="20" Content="Save"/>
+        <Button Click="SaveClick" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="45" Style="{StaticResource SocialBtn}"  FontSize="20">
+            <TextBlock Text="Save" FontSize="19" FontWeight="Bold" Foreground="White"/>
+        </Button>
     </Grid>
 </Page>

@@ -24,7 +24,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="342"/>
             <ColumnDefinition Width="342"/>
-            <ColumnDefinition/>
+            <ColumnDefinition/> 
         </Grid.ColumnDefinitions>
 
         <Grid Grid.ColumnSpan="3" Grid.Row="0">
@@ -39,10 +39,14 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource discordImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Join Discord" FontSize="15"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" FontSize="15">
+                            <Hyperlink NavigateUri="{x:Static local:SocialsPage.DISCORD_LINK}" FontWeight="Bold" FontFamily="{StaticResource Inter}" RequestNavigate="OnRequestNavigate" TextDecorations="{x:Null}">
+                                <TextBlock Text="Join Discord" FontFamily="{StaticResource Inter}" FontSize="15" Foreground="White"/>
+                            </Hyperlink>
+                        </Button>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Discord</TextBlock>
-                    <TextBlock FontFamily="{DynamicResource Inter}" Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
+                    <TextBlock Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
                         Join our Discord server to be aware of 
                         <LineBreak/>
                         updates and upcoming mods, make your 
@@ -57,7 +61,11 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource youtubeImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Watch Videos" FontSize="15"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" FontSize="15">
+                            <Hyperlink NavigateUri="{x:Static local:SocialsPage.YOUTUBE_LINK}" FontWeight="Bold" FontFamily="{StaticResource Inter}" RequestNavigate="OnRequestNavigate" TextDecorations="{x:Null}">
+                                <TextBlock Text="Watch Videos" Foreground="White"/>
+                            </Hyperlink>
+                        </Button>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Youtube</TextBlock>
                     <TextBlock Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
@@ -73,7 +81,11 @@
                 <StackPanel Margin="16,16,0,0" Orientation="Vertical">
                     <StackPanel Orientation="Horizontal">
                         <Image Height="61" Width="61" Source="{StaticResource githubImg}"/>
-                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" Content="Go Source" FontSize="15"/>
+                        <Button Width="114" Height="45" Margin="84,0,0,0" Style="{StaticResource SocialBtn}" FontSize="15">
+                            <Hyperlink NavigateUri="{x:Static local:SocialsPage.GITHUB_LINK}" FontWeight="Bold" FontFamily="{StaticResource Inter}" RequestNavigate="OnRequestNavigate" TextDecorations="{x:Null}">
+                                <TextBlock Text="Go Source" Foreground="White"/>
+                            </Hyperlink>
+                        </Button>
                     </StackPanel>
                     <TextBlock Margin="4,10,0,0" FontSize="14" Foreground="White" FontWeight="Bold">Github</TextBlock>
                     <TextBlock Margin="0,10,0,0" Foreground="White" FontSize="14" Width="281" Height="57">
